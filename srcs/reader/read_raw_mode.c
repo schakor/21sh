@@ -6,18 +6,39 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 14:46:03 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/16 20:45:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
+static void				init_reader(t_shell *sh)
+{
+	if (!(sh->in = (t_input *)malloc(sizeof(*sh->in))))
+	{
+		free(sh);
+		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+	if (!(sh->in->buffer = (char *)malloc(sizeof(*sh->in->buffer) * BUF_TMP)))
+	{
+		free(sh->in);
+		free(sh);
+		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+	ft_memset(sh->in->buffer, '\0', BUF_TMP);
+	sh->in->buf_i = 0;
+	sh->in->bufsize = 0;
+	sh->in->buf_tmp = BUF_TMP;
+}
+
 void			read_raw_mode(t_shell *sh)
 {
 	int		tmp;
 
-	(void)sh;
-	ft_memset(&tmp, '\0', 4);
+	init_reader(sh);
+	tmp = 0;
 	while (42)
 	{
 		if (read(STDIN_FILENO, &tmp, 4) < 0)
@@ -29,11 +50,11 @@ void			read_raw_mode(t_shell *sh)
 		else if (tmp == RIGHT_KEY)
 			move_right_cursor(sh);
 		else if (tmp == DELETE_KEY)
-			del_one_char(sh);
+			delete_buffer(sh);
 		else if (tmp == ENTER_KEY)
 			break ;
 		if (sh->in->bufsize >= sh->in->buf_tmp)
 			increase_buffer(sh);
-		ft_memset(&tmp, '\0', 4);
+		tmp = 0;
 	}
 }

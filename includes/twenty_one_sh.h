@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 11:31:29 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/16 19:24:12 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ void					init_terminal(t_shell *sh);
 void					read_raw_mode(t_shell *sh);
 void					insert_buffer(t_shell *sh, char c);
 void					increase_buffer(t_shell *sh);
+void					delete_buffer(t_shell *sh);
 void					display_prompt(void);
+
 /*
 **	TERMCAPS FUNCTIONS
 */
@@ -103,6 +105,5 @@ void					display_prompt(void);
 void					move_start(t_shell *sh);
 void					move_left_cursor(t_shell *sh);
 void					move_right_cursor(t_shell *sh);
-void					del_one_char(t_shell *sh);
 
 #endif

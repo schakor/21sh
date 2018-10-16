@@ -6,11 +6,12 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 14:46:55 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/15 19:55:23 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
+
 
 void			init_terminal(t_shell *sh)
 {

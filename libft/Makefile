@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/14 17:56:43 by schakor           #+#    #+#              #
-#    Updated: 2018/10/16 11:44:18 by schakor          ###   ########.fr        #
+#    Updated: 2018/10/16 15:20:34 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,8 +111,8 @@ $(NAME) : $(OBJS)  | $(OBJ_PATH)
 	ar rc $@ $^
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
-	mkdir -p $(OBJ_PATH)
-	mkdir -p $(dir $(OBJS))
+	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(dir $(OBJS))
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean :

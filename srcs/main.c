@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 14:45:33 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/16 20:42:47 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int			main(int ac, char **av, char **env)
 	{
 		display_prompt();
 		read_raw_mode(sh);
+		write(1, "\n", 1);
+		ft_putstr(tgetstr("cr", NULL));
+		ft_putstr(sh->in->buffer);
+		write(1, "\n", 1);
+		ft_putstr(tgetstr("cr", NULL));
 	}
 	tcsetattr(STDIN_FILENO, TCSANOW, &(sh->cooked_tio));
 	return (0);
