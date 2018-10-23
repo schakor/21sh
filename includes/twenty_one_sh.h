@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 19:24:12 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/23 16:41:56 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include <sys/ioctl.h>
 
 # define BUF_TMP		32
 # define ENTER_KEY		10
@@ -105,5 +106,7 @@ void					display_prompt(void);
 void					move_start(t_shell *sh);
 void					move_left_cursor(t_shell *sh);
 void					move_right_cursor(t_shell *sh);
+void					delete_until_cursor(t_shell *sh);
+void					move_end(t_shell *sh);
 
 #endif

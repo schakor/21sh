@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 21:54:11 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 19:35:41 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/23 16:56:17 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ void			insert_buffer(t_shell *sh, char c)
 	size_t		i;
 
 	i = sh->in->bufsize;
-	while (i > sh->in->buf_i)
-	{
-		sh->in->buffer[i + 1] = sh->in->buffer[i];
-		i--;
-	}
-	sh->in->buffer[sh->in->buf_i++] = c;
-	sh->in->bufsize += 1;
-	move_start(sh);
-	write(1, sh->in->buffer, sh->in->bufsize);
+	ft_memmove(sh->in->buffer + sh->in->buf_i + 1, sh->in->buffer + sh->in->buf_i, i - sh->in->buf_i);
+	sh->in->buffer[sh->in->buf_i] = c;
+	move_end(sh);
+	delete_until_cursor(sh);
+	sh->in->bufsize++;
+	write(1, &(sh->in->buffer[sh->in->buf_i]), sh->in->bufsize - sh->in->buf_i);
+	sh->in->buf_i++;
 }
 
 void			delete_buffer(t_shell *sh)
