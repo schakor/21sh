@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/23 16:21:11 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 12:56:57 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void			read_raw_mode(t_shell *sh)
 		if (ft_isprint(tmp))
 			insert_buffer(sh, (char)tmp);
 		else if (tmp == LEFT_KEY)
-			move_left_cursor(sh);
+			move_left_cursor(sh, &(sh->in->buf_i));
 		else if (tmp == RIGHT_KEY)
-			move_right_cursor(sh);
+			move_right_cursor(sh, &(sh->in->buf_i));
 		else if (tmp == DELETE_KEY)
 			delete_buffer(sh);
 		else if (tmp == ENTER_KEY)

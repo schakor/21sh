@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:37:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/23 16:44:40 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 13:39:10 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ void			move_start(t_shell *sh)
 	}
 }
 
-void			move_left_cursor(t_shell *sh)
+void			move_left_cursor(t_shell *sh, size_t *index)
 {
 	struct winsize	w;
 
+	(void)sh;
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &w);
-	if (sh->in->buf_i > 0)
+	if (*index > 0)
 	{
-		if (sh->in->buf_i % w.ws_col == 0)
+		if (*index % w.ws_col == 0)
 		{
 			while (w.ws_col > 0)
 			{
@@ -55,25 +56,25 @@ void			move_left_cursor(t_shell *sh)
 		}
 		else
 			ft_putstr(tgetstr("le", NULL));
-		sh->in->buf_i--;
+		(*index)--;
 	}
 }
 
-void			move_right_cursor(t_shell *sh)
+void			move_right_cursor(t_shell *sh, size_t *index)
 {
 	struct winsize w;
 
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &w);
-	if (sh->in->buf_i < sh->in->bufsize)
+	if (*index < sh->in->bufsize)
 	{
-		if (sh->in->buf_i != 0 && sh->in->buf_i % w.ws_col == 0)
+		if (*index != 0 && *index % w.ws_col == 0)
 		{
 			ft_putstr(tgetstr("cr", NULL));
 			ft_putstr(tgetstr("do", NULL));
 		}
 		else
 			ft_putstr(tgetstr("nd", NULL));
-		sh->in->buf_i++;
+		(*index)++;
 	}
 }
 
@@ -83,21 +84,17 @@ void			move_end(t_shell *sh)
 
 	i = sh->in->buf_i;
 	while (i < sh->in->bufsize)
-	{
-		move_right_cursor(sh);
-		i++;
-	}
+		move_right_cursor(sh, &i);
 }
 
-void			delete_until_cursor(t_shell *sh)
+void			delete_until_cursor(t_shell *sh, int index)
 {
 	size_t			i;
 
 	i = sh->in->bufsize;
-	while (i > sh->in->buf_i)
+	while (i > index)
 	{
-		move_left_cursor(sh);
+		move_left_cursor(sh, &i);
 		ft_putstr(tgetstr("dc", NULL));
-		i--;
 	}
 }
