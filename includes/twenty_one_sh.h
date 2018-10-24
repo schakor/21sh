@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 13:44:14 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 13:46:34 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,15 @@ void					move_left_cursor(t_shell *sh, size_t *index);
 void					move_right_cursor(t_shell *sh, size_t *index);
 void					delete_until_cursor(t_shell *sh, size_t index);
 void					move_end(t_shell *sh);
+
+/*
+**	HISTORY FUNCTIONS
+*/
+
+void					up_history(t_shell sh);
+void					down_history(t_shell sh);
+void					add_history(t_shell sh);
+t_history				*new_hist(char *buffer, int bufsize);
+t_history				*add_hist(t_history *list, t_history *new_hist);
 
 #endif
