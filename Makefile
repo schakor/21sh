@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/10/16 19:21:54 by schakor          ###   ########.fr        #
+#    Updated: 2018/10/24 14:05:00 by khsadira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ SRC_FILES	=	main.c\
 				reader/read_raw_mode.c\
 				reader/increase_buffer.c\
 				reader/insert_buffer.c\
-				reader/termcaps.c
+				reader/termcaps.c\
+				history/controler_history.c\
+				history/list_history.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

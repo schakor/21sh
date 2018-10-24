@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 12:53:02 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 14:21:38 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int			main(int ac, char **av, char **env)
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
 		ft_putstr(sh->in->buffer);
+		add_history(sh);
 		if (ft_strequ(sh->in->buffer, "exit"))
 		{
 			tcsetattr(STDIN_FILENO, TCSANOW, &(sh->cooked_tio));	

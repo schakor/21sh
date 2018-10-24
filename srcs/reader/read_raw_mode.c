@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 12:56:57 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 15:10:11 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void			read_raw_mode(t_shell *sh)
 			move_right_cursor(sh, &(sh->in->buf_i));
 		else if (tmp == DELETE_KEY)
 			delete_buffer(sh);
+		else if (tmp == UP_KEY)
+			up_history(sh);
+		else if (tmp == DOWN_KEY)
+			down_history(sh);
 		else if (tmp == ENTER_KEY)
 			break ;
 		if (sh->in->bufsize >= sh->in->buf_tmp)

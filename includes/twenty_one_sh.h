@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 13:46:34 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:30:54 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define LEFT_KEY		4479771
 # define RIGHT_KEY		4414235
 # define UP_KEY			4283163
-# define DOWN_KEY		4283163
+# define DOWN_KEY		4348699
 
 typedef struct termios	t_termios;
 
@@ -61,6 +61,15 @@ typedef struct			s_input
 	size_t				buf_tmp;
 }						t_input;
 
+typedef struct			s_history
+{
+	char				*buffer;
+	int					bufsize;
+	struct s_history	*here;
+	struct s_history	*next;
+	struct s_history	*bfr;
+}						t_history;
+
 typedef struct			s_shell
 {
 	char				**env;
@@ -71,6 +80,7 @@ typedef struct			s_shell
 	t_cmd_lst			*head;
 	t_termios			cooked_tio;
 	t_termios			raw_tio;
+	t_history			*history;
 }						t_shell;
 
 /*
@@ -113,9 +123,9 @@ void					move_end(t_shell *sh);
 **	HISTORY FUNCTIONS
 */
 
-void					up_history(t_shell sh);
-void					down_history(t_shell sh);
-void					add_history(t_shell sh);
+void					up_history(t_shell *sh);
+void					down_history(t_shell *sh);
+void					add_history(t_shell *sh);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
 

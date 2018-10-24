@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/16 20:45:09 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 14:04:39 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	sh->cmd = NULL;
 	sh->head = NULL;
 	init_terminal(sh);
+	sh->history = NULL;
 	return (sh);
 }
