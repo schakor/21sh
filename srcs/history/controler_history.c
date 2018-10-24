@@ -14,54 +14,22 @@
 
 static void	up_history_first(t_shell *sh)
 {
-	ft_putstr("la\n");
 	delete_until_cursor(sh, 0);
 	ft_strdel(&sh->in->buffer);
 	sh->in->buffer = ft_strdup(sh->history->buffer);
 	sh->in->bufsize = sh->history->bufsize;
 	sh->in->buf_i = sh->history->bufsize;
 	write(1, sh->in->buffer, sh->in->bufsize);
-	if (sh->history->bfr)
-		sh->history = sh->history->bfr;
-}
-
-void ft_printlist(t_history *list)
-{
-	ft_putendl("");
-	while (list)
-	{
-		ft_putendl(list->buffer);
-		if (list->bfr)
-		list = list->bfr;
-	}
 }
 
 void	up_history(t_shell *sh)
 {
-	ft_printlist(sh->history);
 	move_end(sh);
-	if (sh->in->buf_i > 0 && !sh->history)
-		return ;
-	if (!sh->history)
-		return ;
-	if (sh->history->bfr == NULL)
-		return ;
-	if (!sh->history->next)
-		up_history_first(sh);
-	else
-	{
-		/*delete_until_cursor(sh, 0);
-		  ft_strdel(&sh->in->buffer);
-		  sh->in->buffer = ft_strdup(sh->history->buffer);
-		  sh->in->bufsize = sh->history->bufsize;
-		  sh->in->buf_i = sh->history->bufsize;
-		  write(1, sh->in->buffer, sh->in->bufsize);*/
-	}
 }
 
 void	down_history(t_shell *sh)
 {
-	move_end(sh);
+/*	move_end(sh);
 	if (!(sh->history && sh->history->next))
 		return ;
 	delete_until_cursor(sh, 0);
@@ -73,7 +41,7 @@ void	down_history(t_shell *sh)
 	sh->in->bufsize = sh->history->bufsize;
 	if (sh->history->next && sh->history->next->next)
 		sh->history = sh->history->next->next;
-	write(1, sh->in->buffer, sh->in->bufsize);
+	write(1, sh->in->buffer, sh->in->bufsize);*/
 }
 
 void	add_history(t_shell *sh)
