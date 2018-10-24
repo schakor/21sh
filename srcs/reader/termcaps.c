@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:37:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 13:39:10 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/24 13:44:02 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			move_end(t_shell *sh)
 		move_right_cursor(sh, &i);
 }
 
-void			delete_until_cursor(t_shell *sh, int index)
+void			delete_until_cursor(t_shell *sh, size_t index)
 {
 	size_t			i;
 
