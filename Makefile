@@ -41,7 +41,10 @@ SRC_FILES	=	main.c\
 				reader/insert_buffer.c\
 				reader/termcaps.c\
 				history/controler_history.c\
-				history/list_history.c
+				history/list_history.c\
+				history/down_history.c\
+				history/up_history.c
+
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

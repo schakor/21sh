@@ -31,5 +31,6 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	sh->head = NULL;
 	init_terminal(sh);
 	sh->history = NULL;
+	sh->history_save = -1;
 	return (sh);
 }

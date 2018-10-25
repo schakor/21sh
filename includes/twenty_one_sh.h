@@ -65,7 +65,6 @@ typedef struct			s_history
 {
 	char				*buffer;
 	int					bufsize;
-	struct s_history	*here;
 	struct s_history	*next;
 	struct s_history	*bfr;
 }						t_history;
@@ -81,6 +80,7 @@ typedef struct			s_shell
 	t_termios			cooked_tio;
 	t_termios			raw_tio;
 	t_history			*history;
+	int				history_save;
 }						t_shell;
 
 /*
@@ -126,6 +126,7 @@ void					move_end(t_shell *sh);
 void					up_history(t_shell *sh);
 void					down_history(t_shell *sh);
 void					add_history(t_shell *sh);
+void					print_history(t_shell *sh);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
 
