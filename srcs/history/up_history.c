@@ -18,6 +18,8 @@ void	up_history_here(t_shell *sh)
 
 void	up_history(t_shell *sh)
 {
+	if (!(sh->in->buf_i == 0) && (sh->history_save == -1))
+		return ;
 	if (!sh->history)
 		return ;
 	move_end(sh);
