@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 14:04:39 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/26 17:54:12 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	sh->env = ft_arrdup(env);
 	sh->env_lst = envarr_2_envlst(env);
 	sh->paths = NULL;
-	sh->cmd = NULL;
-	sh->head = NULL;
 	init_terminal(sh);
 	sh->history = NULL;
 	sh->history_save = -2;
