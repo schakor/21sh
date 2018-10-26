@@ -129,5 +129,6 @@ void					add_history(t_shell *sh);
 void					print_history(t_shell *sh);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
+int					listlen(t_history *list);
 
 #endif

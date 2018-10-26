@@ -57,7 +57,7 @@ void			read_raw_mode(t_shell *sh)
 			down_history(sh);
 		else if (tmp == ENTER_KEY)
 		{
-			sh->history_save = -1;
+			sh->history_save = -2;
 			break ;
 		}
 		if (sh->in->bufsize >= sh->in->buf_tmp)

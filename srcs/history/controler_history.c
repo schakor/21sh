@@ -12,6 +12,19 @@
 
 #include "twenty_one_sh.h"
 
+int	listlen(t_history *list)
+{
+	int	i;
+
+	i = 0;
+	while (list)
+	{
+		i++;
+		list = list->bfr;
+	}
+	return (i);
+}
+
 void	print_history(t_shell *sh)
 {
 	delete_until_cursor(sh, 0);

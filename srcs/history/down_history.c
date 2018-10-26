@@ -21,7 +21,9 @@ void	down_history(t_shell *sh)
 	if (!sh->history)
 		return ;
 	move_end(sh);
-	if (sh->history_save == -1)
+	if (sh->history_save == 0)
+			sh->history_save++;
+	if (sh->history_save == -1 || sh->history_save == -2)
 		return ;
 	else
 	{
