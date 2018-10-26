@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 15:30:54 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/26 15:09:32 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct			s_history
 typedef struct			s_shell
 {
 	char				**env;
+	size_t				len_prompt;
 	t_env_lst			*env_lst;
 	t_input				*in;
 	char				**paths;
@@ -80,7 +81,7 @@ typedef struct			s_shell
 	t_termios			cooked_tio;
 	t_termios			raw_tio;
 	t_history			*history;
-	int				history_save;
+	int					history_save;
 }						t_shell;
 
 /*
@@ -107,7 +108,7 @@ void					read_raw_mode(t_shell *sh);
 void					insert_buffer(t_shell *sh, char c);
 void					increase_buffer(t_shell *sh);
 void					delete_buffer(t_shell *sh);
-void					display_prompt(void);
+void					display_prompt(t_shell *sh);
 
 /*
 **	TERMCAPS FUNCTIONS
@@ -129,6 +130,6 @@ void					add_history(t_shell *sh);
 void					print_history(t_shell *sh);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
-int					listlen(t_history *list);
+int						listlen(t_history *list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:37:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 13:44:02 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 15:23:23 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void			move_start(t_shell *sh)
 	struct winsize	w;
 
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &w);
-	index = sh->in->buf_i;
-	while (index > 1)
+	index = sh->in->buf_i + sh->len_prompt;
+	while (index > 0)
 	{
-		if (index % w.ws_col == 0)
+		/*if (index % w.ws_col == 0)
 		{
 			while (w.ws_col > 0)
 			{
@@ -32,6 +32,7 @@ void			move_start(t_shell *sh)
 			ioctl(STDIN_FILENO, TIOCGWINSZ, &w);
 		}
 		else
+		*/
 			ft_putstr(tgetstr("le", NULL));
 		index--;
 	}

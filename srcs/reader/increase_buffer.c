@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:13:26 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/15 22:49:52 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 15:29:13 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void		increase_buffer(t_shell *sh)
 	ft_memset(ret, '\0', sh->in->buf_tmp + BUF_TMP);
 	ft_memcpy(ret, sh->in->buffer, sh->in->buf_tmp);
 	sh->in->buf_tmp += BUF_TMP;
+	ft_strdel(&(sh->in->buffer));
+	sh->in->buffer = ret;
 }

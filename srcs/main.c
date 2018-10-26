@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 14:21:38 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/26 15:09:49 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int ac, char **av, char **env)
 	sh = init_shell(ac, av, env);
 	while (42)
 	{
-		display_prompt();
+		display_prompt(sh);
 		read_raw_mode(sh);
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));

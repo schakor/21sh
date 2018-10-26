@@ -6,12 +6,12 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 21:54:11 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/24 13:44:51 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 15:30:10 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
-
+/*
 void			insert_buffer(t_shell *sh, char c)
 {
 	size_t		i;
@@ -23,6 +23,25 @@ void			insert_buffer(t_shell *sh, char c)
 	delete_until_cursor(sh, sh->in->buf_i);
 	sh->in->bufsize++;
 	write(1, &(sh->in->buffer[sh->in->buf_i]), sh->in->bufsize - sh->in->buf_i);
+	i = sh->in->bufsize;
+	while (i > sh->in->buf_i + 1)
+		move_left_cursor(sh, &i);
+	sh->in->buf_i++;
+}
+*/
+
+void			insert_buffer(t_shell *sh, char c)
+{
+	size_t		i;
+
+	i = sh->in->bufsize;
+	ft_memmove(sh->in->buffer + sh->in->buf_i + 1, sh->in->buffer + sh->in->buf_i, i - sh->in->buf_i);
+	sh->in->buffer[sh->in->buf_i] = c;
+	move_start(sh);
+	ft_putstr(tgetstr("cd", NULL));
+	display_prompt(sh);
+	sh->in->bufsize++;
+	write(1, sh->in->buffer, sh->in->bufsize);
 	i = sh->in->bufsize;
 	while (i > sh->in->buf_i + 1)
 		move_left_cursor(sh, &i);

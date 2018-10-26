@@ -6,13 +6,13 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 23:03:00 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/23 14:59:45 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/26 15:22:03 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void		display_prompt(void)
+void		display_prompt(t_shell *sh)
 {
 	char	*cwd;
 	char	buff[4097];
@@ -37,5 +37,6 @@ void		display_prompt(void)
 		ft_putstr(tmp);
 	ft_putstr("> ");
 	ft_putstr("\033[0m");
+	sh->len_prompt = ft_strlen(tmp) + 3;
 	ft_strdel(&tmp);
 }
