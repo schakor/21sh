@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 15:09:32 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 16:29:16 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct			s_history
 typedef struct			s_shell
 {
 	char				**env;
+	int					key;
 	size_t				len_prompt;
 	t_env_lst			*env_lst;
 	t_input				*in;

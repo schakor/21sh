@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 15:30:09 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 16:39:09 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,31 @@ static void				init_reader(t_shell *sh)
 	sh->in->buf_tmp = BUF_TMP;
 }
 
-void			read_raw_mode(t_shell *sh)
+void					read_raw_mode(t_shell *sh)
 {
-	int		tmp;
-
 	init_reader(sh);
-	tmp = 0;
-	while (42)
+	while (!(sh->key = 0))
 	{
-		if (read(STDIN_FILENO, &tmp, 4) < 0)
+		if (read(STDIN_FILENO, &sh->key, 4) < 0)
 			break ;
-		if (ft_isprint(tmp))
-			insert_buffer(sh, (char)tmp);
-		else if (tmp == LEFT_KEY)
+		if (ft_isprint(sh->key))
+			insert_buffer(sh, (char)sh->key);
+		else if (sh->key == LEFT_KEY)
 			move_left_cursor(sh, &(sh->in->buf_i));
-		else if (tmp == RIGHT_KEY)
+		else if (sh->key == RIGHT_KEY)
 			move_right_cursor(sh, &(sh->in->buf_i));
-		else if (tmp == DELETE_KEY)
+		else if (sh->key == DELETE_KEY)
 			delete_buffer(sh);
-		else if (tmp == UP_KEY)
+		else if (sh->key == UP_KEY)
 			up_history(sh);
-		else if (tmp == DOWN_KEY)
+		else if (sh->key == DOWN_KEY)
 			down_history(sh);
-		else if (tmp == ENTER_KEY)
+		else if (sh->key == ENTER_KEY)
 		{
 			sh->history_save = -2;
 			break ;
 		}
 		if (sh->in->bufsize >= sh->in->buf_tmp)
 			increase_buffer(sh);
-		tmp = 0;
 	}
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   down_history.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/26 16:37:42 by schakor           #+#    #+#             */
+/*   Updated: 2018/10/26 16:38:14 by schakor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "twenty_one_sh.h"
 
 void	down_history_here(t_shell *sh)
 {
-	int		i;
+	int			i;
 	t_history	*head;
 
 	head = sh->history;
@@ -22,7 +34,7 @@ void	down_history(t_shell *sh)
 		return ;
 	move_end(sh);
 	if (sh->history_save == 0)
-			sh->history_save++;
+		sh->history_save++;
 	if (sh->history_save == -1 || sh->history_save == -2)
 		return ;
 	else

@@ -6,19 +6,17 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/15 19:55:23 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/26 16:31:28 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-
 void			init_terminal(t_shell *sh)
 {
 	char	*term;
 
-	if ((term = get_env_val(sh->env_lst, "TERM")) == NULL)
-		term = ft_strdup("xterm-256color");
+	term = ft_strdup("xterm-256color");
 	tgetent(NULL, term);
 	ft_strdel(&term);
 	tcgetattr(STDIN_FILENO, &(sh->cooked_tio));

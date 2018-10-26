@@ -6,13 +6,13 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 13:33:25 by khsadira          #+#    #+#             */
-/*   Updated: 2018/10/24 16:34:05 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/26 16:37:32 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-int	listlen(t_history *list)
+int		listlen(t_history *list)
 {
 	int	i;
 
