@@ -27,7 +27,9 @@ int		listlen(t_history *list)
 
 void	print_history(t_shell *sh)
 {
-	delete_until_cursor(sh, 0);
+	move_start(sh);
+	ft_putstr(tgetstr("cd", NULL));
+	display_prompt(sh);
 	ft_strdel(&sh->in->buffer);
 	sh->in->buffer = ft_strdup(sh->history->buffer);
 	sh->in->bufsize = sh->history->bufsize;
