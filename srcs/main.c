@@ -20,6 +20,7 @@ int			main(int ac, char **av, char **env)
 	while (42)
 	{
 		display_prompt(sh);
+		signal(SIGINT, ft_signal);
 		read_raw_mode(sh);
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
@@ -32,7 +33,9 @@ int			main(int ac, char **av, char **env)
 		}
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
+		ft_strdel(&sh->in->buffer);
 	}
+	free_term(sh);
 	tcsetattr(STDIN_FILENO, TCSANOW, &(sh->cooked_tio));
 	return (0);
 }

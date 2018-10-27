@@ -97,6 +97,7 @@ void					push_env(t_env_lst **env_lst, char *name, char *value);
 
 t_shell					*init_shell(int ac, char **av, char **env);
 void					init_terminal(t_shell *sh);
+void					free_term(t_shell *sh);
 
 /*
 **	READING FUNCTIONS
@@ -129,5 +130,12 @@ void					print_history(t_shell *sh);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
 int						listlen(t_history *list);
+
+/*
+**	SIGNAL FUNCTIONS
+*/
+
+void					ft_sig_handler(int signo);
+void					ft_signal(int signo);
 
 #endif

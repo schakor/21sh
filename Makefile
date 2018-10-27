@@ -32,6 +32,7 @@ SRC_FILES	=	main.c\
 				terminal/init_shell.c\
 				terminal/init_terminal.c\
 				terminal/display_prompt.c\
+				terminal/free_term.c\
 				env/addlast_env_lst.c\
 				env/envarr_2_envlst.c\
 				env/get_env_val.c\
@@ -43,7 +44,8 @@ SRC_FILES	=	main.c\
 				history/controler_history.c\
 				history/list_history.c\
 				history/down_history.c\
-				history/up_history.c
+				history/up_history.c\
+				signal/ft_signal.c
 
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
