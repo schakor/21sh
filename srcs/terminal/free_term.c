@@ -47,6 +47,7 @@ static void	free_history(t_history *list)
 
 void	free_term(t_shell *sh)
 {
+	return ;
 	ft_strddel(sh->env);
 	ft_strddel(sh->paths);
 	free_envlst(sh->env_lst);
