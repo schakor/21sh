@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:00:32 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/15 16:33:31 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/29 15:59:09 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char				**ft_strsplit(char const *s, char c);
 */
 
 size_t				ft_arrlen(char **arr);
-char				**ft_arrdup(char **ar);
-
+char				**ft_arrdup(char **arr);
+void				ft_arrdel(char **arr);
 /*
 **		CONVERSION FUNCTIONS
 */

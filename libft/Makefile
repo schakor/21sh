@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/14 17:56:43 by schakor           #+#    #+#              #
-#    Updated: 2018/10/16 15:20:34 by schakor          ###   ########.fr        #
+#    Updated: 2018/10/29 15:58:25 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJ_PATH	=	./objs
 
 SRC_FILES	=	array/ft_arrdup.c\
 				array/ft_arrlen.c\
+				array/ft_arrdel.c\
 				conversion/ft_atoi.c\
 				conversion/ft_itoa.c\
 				conversion/ft_tolower.c\
