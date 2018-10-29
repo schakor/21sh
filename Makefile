@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/10/24 14:05:00 by khsadira         ###   ########.fr        #
+#    Updated: 2018/10/29 15:49:29 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,11 +60,12 @@ $(NAME) : $(OBJS) | $(OBJ_PATH)
 	make -C libft
 	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
-$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
-	mkdir -p $(OBJ_PATH)
-	mkdir -p $(dir $(OBJS))
+$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
+$(OBJ_PATH) :
+	mkdir -p $@
+	mkdir -p $(dir $(OBJS))
 clean :
 	make -C libft clean
 	rm -rf $(OBJ_PATH) 2> /dev/null || true
