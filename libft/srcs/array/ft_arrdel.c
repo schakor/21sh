@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 15:54:40 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 15:58:02 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/29 17:06:18 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_arrdel(char **arr)
 		i = 0;
 		while (arr[i] != NULL)
 		{
-			ft_strdel(&(str[i]));
+			ft_strdel(&(arr[i]));
 			i++;
 		}
 		free(arr);

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 17:48:30 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:43:53 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int			main(int ac, char **av, char **env)
 	sh = init_shell(ac, av, env);
 	while (42)
 	{
-		display_prompt(sh);
 		signal(SIGINT, ft_signal);
+		display_prompt(sh);
 		read_raw_mode(sh);
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
@@ -33,9 +33,8 @@ int			main(int ac, char **av, char **env)
 		}
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
-		ft_strdel(&sh->in->buffer);
+		free_input(sh->in);
 	}
-	free_term(sh);
 	tcsetattr(STDIN_FILENO, TCSANOW, &(sh->cooked_tio));
 	return (0);
 }

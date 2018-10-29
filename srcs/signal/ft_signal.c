@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:13:02 by khsadira          #+#    #+#             */
-/*   Updated: 2018/10/01 15:38:25 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/10/29 19:35:57 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_signal(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
-	//	display_prompt(sh);
 		signal(SIGINT, ft_signal);
 	}
 }

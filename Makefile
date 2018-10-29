@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/10/29 15:49:29 by schakor          ###   ########.fr        #
+#    Updated: 2018/10/29 21:37:35 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC_FILES	=	main.c\
 				terminal/init_shell.c\
 				terminal/init_terminal.c\
 				terminal/display_prompt.c\
-				terminal/free_term.c\
 				env/addlast_env_lst.c\
 				env/envarr_2_envlst.c\
 				env/get_env_val.c\
@@ -45,8 +44,8 @@ SRC_FILES	=	main.c\
 				history/list_history.c\
 				history/down_history.c\
 				history/up_history.c\
-				signal/ft_signal.c
-
+				signal/ft_signal.c\
+				cleaner/free_term.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 
@@ -56,7 +55,7 @@ OBJS		=	$(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) | $(OBJ_PATH)
+$(NAME) : $(OBJS)
 	make -C libft
 	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 17:48:29 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:46:47 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,21 @@ typedef struct			s_env_lst
 	struct s_env_lst	*next;
 }						t_env_lst;
 
+typedef struct			s_token
+{
+	char				*name;
+	int					identify;
+	struct s_token		*next;
+	struct s_token		*prev;
+}						t_token;
+
 typedef struct			s_ast
 {
+	char				*oper;
 	struct s_ast		*left;
 	struct s_ast		*right;
 }						t_ast;
+
 typedef struct			s_input
 {
 	char				*buffer;
@@ -72,7 +82,6 @@ typedef struct			s_shell
 	char				**env;
 	int					key;
 	size_t				len_prompt;
-
 	t_env_lst			*env_lst;
 	t_input				*in;
 	char				**paths;
@@ -137,5 +146,14 @@ int						listlen(t_history *list);
 
 void					ft_sig_handler(int signo);
 void					ft_signal(int signo);
+
+/*
+**	CLEANING FUNCTIONS
+*/
+
+void					free_input(t_input *list);
+void					free_envlst(t_env_lst *list);
+void					free_history(t_history *list);
+void					free_term(t_shell *sh);
 
 #endif
