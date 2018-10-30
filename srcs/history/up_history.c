@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:38:20 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 16:38:35 by schakor          ###   ########.fr       */
+/*   Updated: 2018/10/30 13:26:17 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	up_history(t_shell *sh)
 		return ;
 	if (!sh->history)
 		return ;
-	move_end(sh);
 	if (sh->history_save == -2 || sh->history_save == -1)
 	{
 		print_history(sh);
