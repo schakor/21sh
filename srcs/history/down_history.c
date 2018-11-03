@@ -33,7 +33,13 @@ void	down_history(t_shell *sh)
 	if (!sh->history)
 		return ;
 	if (sh->history_save == 0)
-		sh->history_save++;
+	{
+		move_start(sh);
+		ft_putstr(tgetstr("cd", NULL));
+		display_prompt(sh);
+		sh->history_save = -1;
+		return ;
+	}
 	if (sh->history_save == -1 || sh->history_save == -2)
 		return ;
 	else
