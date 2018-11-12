@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:28:39 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/12 15:29:20 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 16:48:19 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ t_history	*new_hist(char *buffer, int bufsize)
 	list = NULL;
 	if (!(list = (t_history *)malloc(sizeof(*list))))
 		return (NULL);
-	if (!(list->buffer = ft_memalloc(bufsize)))
-		return (NULL);
-	ft_memcpy(list->buffer, buffer, bufsize);
+	list->buffer = buffer;
 	list->bufsize = bufsize;
 	list->next = NULL;
 	list->bfr = NULL;

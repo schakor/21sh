@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/12 14:22:28 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 16:43:45 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,9 +137,10 @@ void					up_history(t_shell *sh);
 void					down_history(t_shell *sh);
 void					add_history(t_shell *sh);
 void					print_history(t_shell *sh);
+void					switch_history(t_shell *sh);
+int						listlen(t_history *list);
 t_history				*new_hist(char *buffer, int bufsize);
 t_history				*add_hist(t_history *list, t_history *new_hist);
-int						listlen(t_history *list);
 
 /*
 **	SIGNAL FUNCTIONS
