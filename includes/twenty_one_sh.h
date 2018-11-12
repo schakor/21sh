@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 22:03:24 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 14:22:28 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,24 @@
 
 typedef struct termios	t_termios;
 
-typedef struct			s_env_lst
+typedef struct			s_envl
 {
 	char				*name;
 	char				*value;
-	struct s_env_lst	*next;
-}						t_env_lst;
+	struct s_envl		*next;
+}						t_envl;
+
+typedef struct			s_input
+{
+	char				*buffer;
+	size_t				buf_i;
+	size_t				bufsize;
+	size_t				buf_tmp;
+}						t_input;
 
 typedef struct			s_token
 {
-	char				*name;
+	char				*arg;
 	int					identify;
 	struct s_token		*next;
 	struct s_token		*prev;
@@ -61,14 +69,6 @@ typedef struct			s_ast
 	struct s_ast		*right;
 }						t_ast;
 
-typedef struct			s_input
-{
-	char				*buffer;
-	size_t				buf_i;
-	size_t				bufsize;
-	size_t				buf_tmp;
-}						t_input;
-
 typedef struct			s_history
 {
 	char				*buffer;
@@ -80,14 +80,16 @@ typedef struct			s_history
 typedef struct			s_shell
 {
 	char				**env;
+	char				**paths;
 	int					key;
 	size_t				len_prompt;
-	t_env_lst			*env_lst;
+	t_envl				*envl;
 	t_input				*in;
-	char				**paths;
+	t_history			*history;
+	t_token				*tk;
+	t_ast				*root;
 	t_termios			cooked_tio;
 	t_termios			raw_tio;
-	t_history			*history;
 	int					history_save;
 }						t_shell;
 
@@ -95,10 +97,10 @@ typedef struct			s_shell
 **	ENVIRONNEMENT FUNCTIONS
 */
 
-t_env_lst				*addlast_env_lst(t_env_lst *head, t_env_lst *new);
-t_env_lst				*envarr_2_envlst(char **env);
-char					*get_env_val(t_env_lst *env_lst, char *name);
-void					push_env(t_env_lst **env_lst, char *name, char *value);
+t_envl					*addlast_envl(t_envl *head, t_envl *new);
+t_envl					*envarr_2_envl(char **env);
+char					*get_env_val(t_envl *envl, char *name);
+void					push_env(t_envl **envl, char *name, char *value);
 
 /*
 **	TERMINAL / SHELL FUNCTIONS
@@ -106,7 +108,6 @@ void					push_env(t_env_lst **env_lst, char *name, char *value);
 
 t_shell					*init_shell(int ac, char **av, char **env);
 void					init_terminal(t_shell *sh);
-void					free_term(t_shell *sh);
 
 /*
 **	READING FUNCTIONS
@@ -152,8 +153,14 @@ void					ft_signal(int signo);
 */
 
 void					free_input(t_input *list);
-void					free_envlst(t_env_lst *list);
+void					free_envlst(t_envl *list);
 void					free_history(t_history *list);
 void					free_term(t_shell *sh);
+
+/*
+**	LEXING FUNCTIONS
+*/
+
+void					lexer(t_shell *sh);
 
 #endif

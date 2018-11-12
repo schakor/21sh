@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:37:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 18:48:39 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 14:04:41 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ void			move_left_cursor(t_shell *sh, size_t *index)
 	}
 }
 
+/*
+void			move_left_cursor(t_shell *sh)
+{
+	if (sh->in->buf_i > 0)
+	{
+		ft_putstr(tgetstr("le", NULL));
+		sh->in->buf_i--;
+	}
+
+}
+*/
+
 void			move_right_cursor(t_shell *sh, size_t *index)
 {
 	struct winsize w;
@@ -59,16 +71,4 @@ void			move_end(t_shell *sh)
 	i = sh->in->buf_i;
 	while (i < sh->in->bufsize)
 		move_right_cursor(sh, &i);
-}
-
-void			delete_until_cursor(t_shell *sh, size_t index)
-{
-	size_t			i;
-
-	i = sh->in->bufsize;
-	while (i > index)
-	{
-		move_left_cursor(sh, &i);
-		ft_putstr(tgetstr("dc", NULL));
-	}
 }

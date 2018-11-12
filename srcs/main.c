@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 21:43:53 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 13:41:00 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			main(int ac, char **av, char **env)
 		signal(SIGINT, ft_signal);
 		display_prompt(sh);
 		read_raw_mode(sh);
+		//lexer(sh);
+		//parser(sh);
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
 		ft_putstr(sh->in->buffer);

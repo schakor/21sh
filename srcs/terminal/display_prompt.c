@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 23:03:00 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 15:22:03 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 14:16:44 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		display_prompt(t_shell *sh)
 	ft_putstr("\033[0;31m");
 	ft_putstr("<");
 	if (tmp)
-		ft_putstr(tmp);
+	ft_putstr(tmp);
 	ft_putstr("> ");
 	ft_putstr("\033[0m");
 	sh->len_prompt = ft_strlen(tmp) + 3;

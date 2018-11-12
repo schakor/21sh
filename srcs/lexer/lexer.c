@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_val.c                                      :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 18:52:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/10 19:29:27 by schakor          ###   ########.fr       */
+/*   Created: 2018/11/10 19:36:28 by schakor           #+#    #+#             */
+/*   Updated: 2018/11/10 20:51:03 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-char		*get_env_val(t_envl *envl, char *name)
+void		lexer(t_shell *sh)
 {
-	char	*ret;
-
-	ret = NULL;
-	if (envl == NULL || name == NULL)
-		return (NULL);
-	while (envl != NULL)
+	while (sh->in->buffer != '\0')
 	{
-		if (envl->name != NULL && ft_strequ(envl->name, name) == 1)
-			return (ft_strdup(envl->value));
-		envl = envl->next;
+		
 	}
-	return (NULL);
 }

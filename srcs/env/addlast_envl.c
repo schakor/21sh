@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addlast_env_lst.c                                  :+:      :+:    :+:   */
+/*   addlast_envl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 18:11:26 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/15 19:43:30 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/10 19:24:30 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-t_env_lst		*addlast_env_lst(t_env_lst *head, t_env_lst *new)
+t_envl		*addlast_envl(t_envl *head, t_envl *new)
 {
-	t_env_lst	*tmp;
+	t_envl	*tmp;
 
 	tmp = NULL;
 	if (head == NULL)

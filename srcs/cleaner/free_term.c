@@ -6,15 +6,15 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 21:45:10 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 21:45:13 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/10 19:30:14 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void			free_envlst(t_env_lst *list)
+void			free_envl(t_envl *list)
 {
-	t_env_lst	*tmp;
+	t_envl		*tmp;
 
 	while (list)
 	{
@@ -53,7 +53,7 @@ void			free_term(t_shell *sh)
 {
 	ft_arrdel(sh->env);
 	ft_arrdel(sh->paths);
-	free_envlst(sh->env_lst);
+	free_envl(sh->envl);
 	free_input(sh->in);
 	free_history(sh->history);
 	free(sh);

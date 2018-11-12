@@ -6,22 +6,22 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 19:30:17 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/15 19:44:58 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/10 19:26:11 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void		push_env(t_env_lst **env_lst_ptr, char *name, char *value)
+void			push_env(t_envl **head, char *name, char *value)
 {
-	t_env_lst	*tmp;
-	t_env_lst	*new;
+	t_envl		*tmp;
+	t_envl		*new;
 
 	new = NULL;
 	tmp = NULL;
-	if (!env_lst_ptr || !name || !value)
+	if (!head || !name || !value)
 		return ;
-	tmp = *env_lst_ptr;
+	tmp = *head;
 	while (tmp->next != NULL)
 	{
 		if (ft_strequ(tmp->name, name))
@@ -32,10 +32,10 @@ void		push_env(t_env_lst **env_lst_ptr, char *name, char *value)
 		}
 		tmp = tmp->next;
 	}
-	if (!(new = (t_env_lst *)malloc(sizeof(*new))))
+	if (!(new = (t_envl *)malloc(sizeof(*new))))
 		return ;
 	new->name = ft_strdup(name);
 	new->value = ft_strdup(value);
 	new->next = NULL;
-	*env_lst_ptr = addlast_env_lst(*env_lst_ptr, new);
+	*head = addlast_envl(*head, new);
 }

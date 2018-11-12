@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/10/29 21:37:35 by schakor          ###   ########.fr        #
+#    Updated: 2018/11/12 14:57:59 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ SRC_FILES	=	main.c\
 				terminal/init_shell.c\
 				terminal/init_terminal.c\
 				terminal/display_prompt.c\
-				env/addlast_env_lst.c\
-				env/envarr_2_envlst.c\
+				env/addlast_envl.c\
+				env/envarr_2_envl.c\
 				env/get_env_val.c\
 				env/push_env.c\
 				reader/read_raw_mode.c\
