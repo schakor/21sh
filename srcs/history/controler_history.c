@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 13:33:25 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/12 16:48:16 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/12 17:45:21 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	print_history(t_shell *sh)
 	ft_putstr(tgetstr("cd", NULL));
 	display_prompt(sh);
 	ft_strdel(&sh->in->buffer);
-	sh->in->buffer = ft_strdup(sh->history->buffer);
+	if (!(sh->in->buffer = (char *)ft_memalloc(sh->history->buftmp)))
+		return ;
+	ft_memcpy(sh->in->buffer, sh->history->buffer, sh->history->bufsize);
+	sh->in->buftmp = sh->history->buftmp;
 	sh->in->bufsize = sh->history->bufsize;
 	sh->in->buf_i = sh->history->bufsize;
 	write(1, sh->in->buffer, sh->in->bufsize);
@@ -59,6 +62,6 @@ void	add_history(t_shell *sh)
 {
 	t_history	*new_ele;
 
-	new_ele = new_hist(ft_strdup(sh->in->buffer), sh->in->bufsize);
+	new_ele = new_hist(sh->in->buffer, sh->in->bufsize, sh->in->buftmp);
 	sh->history = add_hist(sh->history, new_ele);
 }

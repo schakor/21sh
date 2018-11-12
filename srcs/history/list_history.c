@@ -6,21 +6,23 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:28:39 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/12 16:48:19 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/12 17:40:33 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-t_history	*new_hist(char *buffer, int bufsize)
+t_history	*new_hist(char *buffer, size_t bufsize, size_t buftmp)
 {
 	t_history	*list;
 
-	list = NULL;
 	if (!(list = (t_history *)malloc(sizeof(*list))))
 		return (NULL);
-	list->buffer = buffer;
+	if (!(list->buffer = (char *)ft_memalloc(buftmp)))
+		return (NULL);
+	ft_memcpy(list->buffer, buffer, bufsize);
 	list->bufsize = bufsize;
+	list->buftmp = buftmp;
 	list->next = NULL;
 	list->bfr = NULL;
 	return (list);

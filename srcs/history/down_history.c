@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:37:42 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/12 16:46:06 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/12 17:45:51 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	down_history(t_shell *sh)
 		move_start(sh);
 		ft_putstr(tgetstr("cd", NULL));
 		display_prompt(sh);
-		ft_memset(sh->in->buffer, '\0', sh->in->buf_tmp);
+		ft_memset(sh->in->buffer, '\0', sh->in->buftmp);
 		sh->history_save = -1;
 		sh->in->bufsize = 0;
 		sh->in->buf_i = 0;

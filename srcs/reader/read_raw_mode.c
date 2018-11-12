@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/12 14:44:39 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/12 17:43:49 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void				init_reader(t_shell *sh)
 	ft_memset(sh->in->buffer, '\0', BUF_TMP);
 	sh->in->buf_i = 0;
 	sh->in->bufsize = 0;
-	sh->in->buf_tmp = BUF_TMP;
+	sh->in->buftmp = BUF_TMP;
 }
 
 void					read_raw_mode(t_shell *sh)
@@ -57,7 +57,7 @@ void					read_raw_mode(t_shell *sh)
 			sh->history_save = -2;
 			break ;
 		}
-		if (sh->in->bufsize >= sh->in->buf_tmp)
+		if (sh->in->bufsize >= sh->in->buftmp)
 			increase_buffer(sh);
 	}
 }
