@@ -32,6 +32,7 @@ void	down_history(t_shell *sh)
 {
 	if (!sh->history)
 		return ;
+	switch_history(sh);
 	if (sh->history_save == 0)
 	{
 		move_start(sh);

@@ -19,14 +19,22 @@ void	switch_history(t_shell *sh)
 
 	i = 0;
 	head = sh->history;
+	if (!sh->in->buffer || sh->in->buffer[0] == '\0')
+		return ;
 	while (i < sh->history_save && sh->history->bfr)
 	{
 		sh->history = sh->history->bfr;
 		i++;
 	}
-	ft_strdel(&sh->history->buffer);
-	sh->history->buffer = ft_strdup(sh->in->buffer);
-	sh->history->bufsize = sh->in->bufsize;
+	if (!ft_strequ(sh->history->buffer, sh->in->buffer))
+	{
+		ft_strdel(&sh->history->buffer);
+		if (!(sh->history->buffer = (char *)ft_memalloc(sh->history->buftmp)))
+			return ;
+		ft_memcpy(sh->history->buffer, sh->in->buffer, sh->in->bufsize);
+		sh->history->buftmp = sh->in->buftmp;
+		sh->history->bufsize = sh->in->bufsize;
+	}
 	sh->history = head;
 }
 
