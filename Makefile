@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/11/12 14:57:59 by schakor          ###   ########.fr        #
+#    Updated: 2018/11/14 16:51:56 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRC_FILES	=	main.c\
 				history/down_history.c\
 				history/up_history.c\
 				signal/ft_signal.c\
-				cleaner/free_term.c
+				cleaner/free_term.c\
+				cleaner/fatal_exit.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

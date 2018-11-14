@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:37:56 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/12 14:04:41 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/14 17:44:36 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ void			move_left_cursor(t_shell *sh, size_t *index)
 		(*index)--;
 	}
 }
-
-/*
-void			move_left_cursor(t_shell *sh)
-{
-	if (sh->in->buf_i > 0)
-	{
-		ft_putstr(tgetstr("le", NULL));
-		sh->in->buf_i--;
-	}
-
-}
-*/
 
 void			move_right_cursor(t_shell *sh, size_t *index)
 {

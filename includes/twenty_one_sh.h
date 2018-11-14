@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/12 17:45:10 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/14 17:25:59 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # include <curses.h>
 # include <term.h>
 # include <sys/ioctl.h>
+
+# define SH_ENOMEM		1
+# define SH_EINVAL		2
+# define SH_ENOTTY		3
 
 # define BUF_TMP		32
 # define ENTER_KEY		10
@@ -83,6 +87,7 @@ typedef struct			s_shell
 	char				**env;
 	char				**paths;
 	int					key;
+	unsigned char		cle;
 	size_t				len_prompt;
 	t_envl				*envl;
 	t_input				*in;
@@ -158,6 +163,7 @@ void					free_input(t_input *list);
 void					free_envlst(t_envl *list);
 void					free_history(t_history *list);
 void					free_term(t_shell *sh);
+void					fatal_exit(t_shell *sh, int code);
 
 /*
 **	LEXING FUNCTIONS

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:33:53 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/14 17:32:43 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 static void				init_reader(t_shell *sh)
 {
 	if (!(sh->in = (t_input *)malloc(sizeof(*sh->in))))
-	{
-		free(sh);
-		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		fatal_exit(sh, SH_ENOMEM);
 	if (!(sh->in->buffer = (char *)malloc(sizeof(*sh->in->buffer) * BUF_TMP)))
-	{
-		free(sh->in);
-		free(sh);
-		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		fatal_exit(sh, SH_ENOMEM);
 	ft_memset(sh->in->buffer, '\0', BUF_TMP);
 	sh->in->buf_i = 0;
 	sh->in->bufsize = 0;
@@ -35,15 +26,12 @@ static void				init_reader(t_shell *sh)
 
 void					read_raw_mode(t_shell *sh)
 {
+	static
 	init_reader(sh);
 	while (!(sh->key = 0))
 	{
-		if (read(STDIN_FILENO, &sh->key, 1) < 0)
+		if (read(STDIN_FILENO, &sh->key, 4) < 0)
 			break ;
-		ft_putstr(" [");
-		ft_putnbr(sh->key);
-		ft_putstr("] ");
-		/*
 		if (ft_isprint(sh->key))
 			insert_buffer(sh, (char)sh->key);
 		else if (sh->key == LEFT_KEY)
@@ -63,6 +51,5 @@ void					read_raw_mode(t_shell *sh)
 		}
 		if (sh->in->bufsize >= sh->in->buftmp)
 			increase_buffer(sh);
-		*/
 	}
 }

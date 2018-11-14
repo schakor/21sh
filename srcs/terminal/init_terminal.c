@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/26 16:31:28 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/14 16:53:36 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void			init_terminal(t_shell *sh)
 {
 	char	*term;
 
+	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO) ||\
+			!isatty(STDERR_FILENO))
+		fatal_exit(sh, SH_ENOTTY);
 	term = ft_strdup("xterm-256color");
 	tgetent(NULL, term);
 	ft_strdel(&term);

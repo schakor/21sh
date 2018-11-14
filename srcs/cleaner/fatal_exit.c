@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   fatal_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:25:38 by schakor          ###   ########.fr       */
+/*   Created: 2018/11/14 16:48:23 by schakor           #+#    #+#             */
+/*   Updated: 2018/11/14 16:51:19 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-t_shell					*init_shell(int ac, char **av, char **env)
+void		fatal_exit(t_shell *sh, int code)
 {
-	t_shell		*sh;
-
-	(void)ac;
-	(void)av;
-	if (!(sh = (t_shell *)malloc(sizeof(*sh))))
-		fatal_exit(sh, SH_ENOMEM);
-	sh->env = ft_arrdup(env);
-	sh->paths = NULL;
-	sh->key = 0;
-	sh->len_prompt = 0;
-	sh->envl = envarr_2_envl(env);
-	sh->in = NULL;
-	sh->history = NULL;
-	sh->tk = NULL;
-	sh->root = NULL;
-	init_terminal(sh);
-	sh->history_save = -2;
-	return (sh);
+	if (sh)
+		free_term(sh);
+	if (code == SH_ENOMEM)
+		ft_putendl_fd("Cannot allocate memory.\n", STDERR_FILENO);
+	else if (code == SH_EINVAL)
+		ft_putendl_fd("Invalid argument.\n", STDERR_FILENO);
+	else if (code == SH_ENOTTY)
+		ft_putendl_fd("Inappropriate ioctl device.\n", STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }
