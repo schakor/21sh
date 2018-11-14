@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:33:53 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/14 17:47:19 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ void					read_raw_mode(t_shell *sh)
 	{
 		if (read(STDIN_FILENO, &sh->key, 1) < 0)
 			break ;
-		ft_putstr(" [");
-		ft_putnbr(sh->key);
-		ft_putstr("] ");
-		/*
 		if (ft_isprint(sh->key))
 			insert_buffer(sh, (char)sh->key);
 		else if (sh->key == LEFT_KEY)
@@ -63,6 +59,5 @@ void					read_raw_mode(t_shell *sh)
 		}
 		if (sh->in->bufsize >= sh->in->buftmp)
 			increase_buffer(sh);
-		*/
 	}
 }
