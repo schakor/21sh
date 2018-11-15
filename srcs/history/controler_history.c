@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 13:33:25 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/12 17:45:21 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 15:14:07 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	switch_history(t_shell *sh)
 	if (!ft_strequ(sh->history->buffer, sh->in->buffer))
 	{
 		ft_strdel(&sh->history->buffer);
+		ft_putstr("here\n");
 		if (!(sh->history->buffer = (char *)ft_memalloc(sh->history->buftmp)))
-			return ;
+			fatal_exit(sh, SH_ENOMEM);
 		ft_memcpy(sh->history->buffer, sh->in->buffer, sh->in->bufsize);
 		sh->history->buftmp = sh->in->buftmp;
 		sh->history->bufsize = sh->in->bufsize;

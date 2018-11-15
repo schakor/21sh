@@ -39,7 +39,7 @@ void	history_from_file(t_shell *sh, char *path)
 	close(fd);
 	while (buffer && buffer[i])
 	{
-		new_ele = new_hist(buffer[i], ft_strlen(buffer[i]), 32);
+		new_ele = new_hist(buffer[i], ft_strlen(buffer[i]), ft_strlen(buffer[i]));
 		sh->history = add_hist(sh->history, new_ele);
 		i++;
 	}
