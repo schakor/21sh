@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:10:37 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 14:21:22 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@
 # define UP_KEY			4283163
 # define DOWN_KEY		4348699
 
+typedef unsigned long long	t_uint64;
 typedef long long		t_int64;
 
 typedef struct termios	t_termios;
+
+t_termios				g_cooked_tio;
 
 typedef struct			s_envl
 {
@@ -114,7 +117,7 @@ void					push_env(t_envl **envl, char *name, char *value);
 
 t_shell					*init_shell(int ac, char **av, char **env);
 void					init_terminal(t_shell *sh);
-void					reset_terminal(t_shell *sh);
+void					reset_terminal(void);
 
 /*
 **	READING FUNCTIONS

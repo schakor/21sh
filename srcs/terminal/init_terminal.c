@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:39:12 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 14:21:23 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			init_terminal(t_shell *sh)
 	if (!tgetent(NULL, term))
 		fatal_exit(sh, SH_ENOTTY);
 	ft_strdel(&term);
-	if (tcgetattr(STDIN_FILENO, &(sh->cooked_tio)) ||\
+	if (tcgetattr(STDIN_FILENO, &(g_cooked_tio)) ||\
 			tcgetattr(STDIN_FILENO, &(sh->raw_tio)))
 		fatal_exit(sh, SH_EINVAL);
 	sh->raw_tio.c_lflag &= ~(ECHO | ICANON);
@@ -35,8 +35,9 @@ void			init_terminal(t_shell *sh)
 		fatal_exit(sh, SH_EINVAL);
 }
 
-void			reset_terminal(t_shell *sh)
+void			reset_terminal(void)
 {
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &sh->cooked_tio))
-		fatal_exit(sh, SH_EINVAL);
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &g_cooked_tio))
+		exit(EXIT_FAILURE);
+	//	fatal_exit(sh, SH_EINVAL);
 }

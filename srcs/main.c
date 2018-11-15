@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:37:57 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 14:24:32 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			main(int ac, char **av, char **env)
 		if (ft_strequ(sh->in->buffer, "exit"))
 		{
 			file_from_history(sh);
-			reset_terminal(sh);
+			reset_terminal();
 			exit(EXIT_FAILURE);
 		}
 		write(1, "\n", 1);
