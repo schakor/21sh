@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 14:37:05 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/15 15:00:59 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 15:15:07 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int			main(int ac, char **av, char **env)
 	while (42)
 	{
 		signal(SIGINT, ft_signal);
-		signal(SIGSEGV, ft_signal);
-		signal(SIGABRT, ft_signal);
+		//signal(SIGSEGV, ft_signal);
+		//signal(SIGABRT, ft_signal);
 		display_prompt(sh);
 		read_raw_mode(sh);
 		//lexer(sh);
