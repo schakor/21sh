@@ -22,52 +22,58 @@ static char	**file_to_buffer(int fd, char **buffer)
 	return (buffer);
 }
 
-void	history_from_file(t_shell *sh)
+void	history_from_file(t_shell *sh, char *path)
 {
 	char		**buffer;
 	int		i;
 	int		fd;
 	t_history	*new_ele;
 
+	path = ft_strfreejoin(&path, "/.21sh_hist");
 	buffer = NULL;
-	fd = open("/Users/khansadirac/.21sh_hist", O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return ;
 	i = 0;
 	buffer = file_to_buffer(fd, buffer);
+	close(fd);
 	while (buffer && buffer[i])
-		i++;
-	i--;
-	while (buffer && i >= 0)
 	{
 		new_ele = new_hist(buffer[i], ft_strlen(buffer[i]), 32);
 		sh->history = add_hist(sh->history, new_ele);
-		i--;
+		i++;
 	}
 	//fct free char **;
 	i = 0;
 	while (buffer[i])
 		ft_strdel(&buffer[i++]);
 	free(buffer);
+	ft_strdel(&path);
 }
 
-void	file_from_history(t_shell *sh)
+void	file_from_history(t_shell *sh, char *path)
 {
 	int	fd;
 	char	*str;
 
+	path = ft_strfreejoin(&path, "/.21sh_hist");
 	str = NULL;
-	fd = open("/Users/khansadirac/.21sh_hist", O_WRONLY);
+	fd = open(path, O_WRONLY);
 	if (fd < 0)
-		fd = open("/Users/khansadirac/.21sh_hist", O_CREAT | O_WRONLY);
-	while (sh->history && sh->history->bfr)
-		sh->history = sh->history->bfr;
-	while (sh->history && sh->history->next)
+		fd = open(path, O_CREAT | O_WRONLY);
+	if (fd > 0)
 	{
-		str = ft_strfreejoin(&str, sh->history->buffer);
-		str = ft_strfreejoin(&str, "\n");
-		sh->history = sh->history->next;
+		while (sh->history && sh->history->bfr)
+			sh->history = sh->history->bfr;
+		while (sh->history && sh->history->next)
+		{
+			str = ft_strfreejoin(&str, sh->history->buffer);
+			str = ft_strfreejoin(&str, "\n");
+			sh->history = sh->history->next;
+		}
+		write(fd, str, ft_strlen(str));
+		ft_strdel(&str);
+		ft_strdel(&path);
+		close (fd);
 	}
-	write(fd, str, ft_strlen(str));
-	ft_strdel(&str);
 }

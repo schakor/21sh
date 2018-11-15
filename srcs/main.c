@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:11:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:37:57 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 14:06:59 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			main(int ac, char **av, char **env)
 		add_history(sh);
 		if (ft_strequ(sh->in->buffer, "exit"))
 		{
-			file_from_history(sh);
+			file_from_history(sh, get_env_val(sh->envl, "HOME"));
 			reset_terminal(sh);
 			exit(EXIT_FAILURE);
 		}
