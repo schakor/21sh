@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 21:45:10 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 12:51:59 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 13:33:33 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ void			free_history(t_history *list)
 
 void			free_term(t_shell *sh)
 {
-	ft_arrdel(sh->env);
-	free_envl(sh->envl);
-	free_input(sh->in);
-	free_history(sh->history);
-	free(sh);
+	if (sh)
+	{
+		ft_arrdel(sh->env);
+		free_envl(sh->envl);
+		free_input(sh->in);
+		free_history(sh->history);
+		free(sh);
+	}
 }

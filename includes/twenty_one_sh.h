@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 12:51:29 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 13:10:37 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void					push_env(t_envl **envl, char *name, char *value);
 
 t_shell					*init_shell(int ac, char **av, char **env);
 void					init_terminal(t_shell *sh);
+void					reset_terminal(t_shell *sh);
 
 /*
 **	READING FUNCTIONS
