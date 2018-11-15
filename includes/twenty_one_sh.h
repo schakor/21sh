@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:25:59 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 12:51:29 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define RIGHT_KEY		4414235
 # define UP_KEY			4283163
 # define DOWN_KEY		4348699
+
+typedef long long		t_int64;
 
 typedef struct termios	t_termios;
 
@@ -85,12 +87,10 @@ typedef struct			s_history
 typedef struct			s_shell
 {
 	char				**env;
-	char				**paths;
-	unsigned char		cle;
+	t_envl				*envl;
 	int					key;
 	int					history_save;
 	size_t				len_prompt;
-	t_envl				*envl;
 	t_input				*in;
 	t_history			*history;
 	t_token				*tk;

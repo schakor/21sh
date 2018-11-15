@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:47:19 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 12:52:43 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void					read_raw_mode(t_shell *sh)
 	init_reader(sh);
 	while (!(sh->key = 0))
 	{
-		if (read(STDIN_FILENO, &sh->key, 1) < 0)
+		if (read(STDIN_FILENO, &sh->key, 4) < 0)
 			break ;
 		if (ft_isprint(sh->key))
 			insert_buffer(sh, (char)sh->key);

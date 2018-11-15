@@ -6,11 +6,18 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/14 17:25:38 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 12:56:43 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
+
+static void				init_env_var(t_shell *sh, char **env)
+{
+	sh->env = ft_arrdup(env);
+	sh->envl = envarr_2_envl(env);
+}
+
 
 t_shell					*init_shell(int ac, char **av, char **env)
 {
@@ -20,11 +27,9 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	(void)av;
 	if (!(sh = (t_shell *)malloc(sizeof(*sh))))
 		fatal_exit(sh, SH_ENOMEM);
-	sh->env = ft_arrdup(env);
-	sh->paths = NULL;
+	init_env_var(sh, env);
 	sh->key = 0;
 	sh->len_prompt = 0;
-	sh->envl = envarr_2_envl(env);
 	sh->in = NULL;
 	sh->tk = NULL;
 	sh->root = NULL;
