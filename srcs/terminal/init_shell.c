@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:26:46 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 13:34:34 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void				init_env_var(t_shell *sh, char **env)
 	sh->env = ft_arrdup(env);
 	sh->envl = envarr_2_envl(env);
 }
-
 
 t_shell					*init_shell(int ac, char **av, char **env)
 {

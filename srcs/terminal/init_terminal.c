@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:31:27 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 13:39:12 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ void			init_terminal(t_shell *sh)
 	if (!tgetent(NULL, term))
 		fatal_exit(sh, SH_ENOTTY);
 	ft_strdel(&term);
-	if (tcgetattr(STDIN_FILENO, &(sh->cooked_tio)) || tcgetattr(STDIN_FILENO, &(sh->raw_tio)))
+	if (tcgetattr(STDIN_FILENO, &(sh->cooked_tio)) ||\
+			tcgetattr(STDIN_FILENO, &(sh->raw_tio)))
 		fatal_exit(sh, SH_EINVAL);
 	sh->raw_tio.c_lflag &= ~(ECHO | ICANON);
 	sh->raw_tio.c_oflag &= ~(OPOST);
 	sh->raw_tio.c_cc[VMIN] = 1;
 	sh->raw_tio.c_cc[VTIME] = 0;
-	tcsetattr(STDIN_FILENO, TCSADRAIN, &(sh->raw_tio));
+	if (tcsetattr(STDIN_FILENO, TCSADRAIN, &(sh->raw_tio)))
+		fatal_exit(sh, SH_EINVAL);
 }
 
 void			reset_terminal(t_shell *sh)
 {
-	if (!tcsetattr(STDIN_FILENO, TCSANOW, &sh->cooked_tio))
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &sh->cooked_tio))
 		fatal_exit(sh, SH_EINVAL);
 }
