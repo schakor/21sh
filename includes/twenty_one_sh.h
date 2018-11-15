@@ -6,7 +6,11 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/15 14:21:22 by schakor          ###   ########.fr       */
+=======
+/*   Updated: 2018/11/15 14:06:34 by khsadira         ###   ########.fr       */
+>>>>>>> 8fa18b769f903aec4489f3c018a0f3ba281e9291
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +152,8 @@ void					down_history(t_shell *sh);
 void					add_history(t_shell *sh);
 void					print_history(t_shell *sh);
 void					switch_history(t_shell *sh);
-void					history_from_file(t_shell *sh);
-void					file_from_history(t_shell *sh);
+void					history_from_file(t_shell *sh, char *path);
+void					file_from_history(t_shell *sh, char *path);
 int						listlen(t_history *list);
 t_history				*new_hist(char *buffer, size_t bufsize, size_t buftmp);
 t_history				*add_hist(t_history *list, t_history *new_hist);

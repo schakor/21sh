@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:34:34 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/15 14:07:17 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	init_terminal(sh);
 	sh->history = NULL;
 	sh->history_save = -2;
-	history_from_file(sh);
+	history_from_file(sh, get_env_val(sh->envl, "HOME"));
 	return (sh);
 }
