@@ -30,6 +30,7 @@ int			main(int ac, char **av, char **env)
 		add_history(sh);
 		if (ft_strequ(sh->in->buffer, "exit"))
 		{
+			file_from_history(sh);
 			tcsetattr(STDIN_FILENO, TCSANOW, &(sh->cooked_tio));
 			exit(1);
 		}

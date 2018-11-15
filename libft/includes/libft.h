@@ -60,6 +60,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoinjoin(char *s1, char *s2, char *s3);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+char				*ft_strfreejoin(char **over, char *buff);
 
 /*
 **		CHAR ** FUNCTIONS

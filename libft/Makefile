@@ -84,6 +84,7 @@ SRC_FILES	=	array/ft_arrdup.c\
 				string/ft_strcmp.c\
 				string/ft_strequ.c\
 				string/ft_strjoinjoin.c\
+				string/ft_strfreejoin.c\
 				string/ft_strmapi.c\
 				string/ft_strnequ.c\
 				string/ft_strsplit.c\

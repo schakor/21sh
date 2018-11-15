@@ -44,6 +44,7 @@ SRC_FILES	=	main.c\
 				history/list_history.c\
 				history/down_history.c\
 				history/up_history.c\
+				history/file_history.c\
 				signal/ft_signal.c\
 				cleaner/free_term.c\
 				cleaner/fatal_exit.c

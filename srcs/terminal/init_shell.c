@@ -26,10 +26,11 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	sh->len_prompt = 0;
 	sh->envl = envarr_2_envl(env);
 	sh->in = NULL;
-	sh->history = NULL;
 	sh->tk = NULL;
 	sh->root = NULL;
 	init_terminal(sh);
+	sh->history = NULL;
 	sh->history_save = -2;
+	history_from_file(sh);
 	return (sh);
 }

@@ -86,8 +86,9 @@ typedef struct			s_shell
 {
 	char				**env;
 	char				**paths;
-	int					key;
 	unsigned char		cle;
+	int					key;
+	int					history_save;
 	size_t				len_prompt;
 	t_envl				*envl;
 	t_input				*in;
@@ -96,7 +97,6 @@ typedef struct			s_shell
 	t_ast				*root;
 	t_termios			cooked_tio;
 	t_termios			raw_tio;
-	int					history_save;
 }						t_shell;
 
 /*
@@ -144,6 +144,8 @@ void					down_history(t_shell *sh);
 void					add_history(t_shell *sh);
 void					print_history(t_shell *sh);
 void					switch_history(t_shell *sh);
+void					history_from_file(t_shell *sh);
+void					file_from_history(t_shell *sh);
 int						listlen(t_history *list);
 t_history				*new_hist(char *buffer, size_t bufsize, size_t buftmp);
 t_history				*add_hist(t_history *list, t_history *new_hist);
