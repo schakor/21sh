@@ -29,12 +29,12 @@ void	history_from_file(t_shell *sh, char *path)
 	int		fd;
 	t_history	*new_ele;
 
-	path = ft_strfreejoin(&path, "/.21sh_hist");
+	path = ft_strfreejoin(&path, "/.21sh_history");
 	buffer = NULL;
+	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return ;
-	i = 0;
 	buffer = file_to_buffer(fd, buffer);
 	close(fd);
 	while (buffer && buffer[i])
@@ -43,7 +43,6 @@ void	history_from_file(t_shell *sh, char *path)
 		sh->history = add_hist(sh->history, new_ele);
 		i++;
 	}
-	//fct free char **;
 	i = 0;
 	while (buffer[i])
 		ft_strdel(&buffer[i++]);
@@ -56,7 +55,7 @@ void	file_from_history(t_shell *sh, char *path)
 	int	fd;
 	char	*str;
 
-	path = ft_strfreejoin(&path, "/.21sh_hist");
+	path = ft_strfreejoin(&path, "/.21sh_history");
 	str = NULL;
 	fd = open(path, O_WRONLY);
 	if (fd < 0)

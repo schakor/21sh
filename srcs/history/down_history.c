@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:37:42 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 15:10:33 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/19 11:21:15 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	down_history(t_shell *sh)
 {
 	if (!sh->history)
 		return ;
-//	switch_history(sh);
+	switch_history(sh);
 	if (sh->history_save == 0)
 	{
 		move_start(sh);
