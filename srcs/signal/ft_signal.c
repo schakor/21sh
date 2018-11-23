@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:13:02 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/15 15:02:37 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/22 17:19:27 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_signal(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
-		signal(SIGINT, ft_signal);
+		reset_terminal();
+		exit(EXIT_FAILURE);
 	}
 	else if (signo == SIGSEGV)
 	{

@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/11/14 16:51:56 by schakor          ###   ########.fr        #
+#    Updated: 2018/11/23 15:44:41 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c | $(OBJ_PATH)
 $(OBJ_PATH) :
 	mkdir -p $@
 	mkdir -p $(dir $(OBJS))
+
 clean :
 	make -C libft clean
 	rm -rf $(OBJ_PATH) 2> /dev/null || true

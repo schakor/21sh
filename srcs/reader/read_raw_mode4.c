@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 12:52:43 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/22 17:13:20 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 static void				init_reader(t_shell *sh)
 {
 	if (!(sh->in = (t_input *)malloc(sizeof(*sh->in))))
-	{
-		free(sh);
-		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		fatal_exit(sh, SH_ENOMEM);
 	if (!(sh->in->buffer = (char *)malloc(sizeof(*sh->in->buffer) * BUF_TMP)))
-	{
-		free(sh->in);
-		free(sh);
-		ft_putendl_fd("Cannot allocate memory.", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		fatal_exit(sh, SH_ENOMEM);
 	ft_memset(sh->in->buffer, '\0', BUF_TMP);
 	sh->in->buf_i = 0;
 	sh->in->bufsize = 0;

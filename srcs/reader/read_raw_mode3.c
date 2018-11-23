@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 14:03:14 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/22 18:13:54 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,29 @@ static void				init_reader(t_shell *sh)
 
 void					read_raw_mode(t_shell *sh)
 {
+	unsigned long long int	key;
+
 	init_reader(sh);
-	while (!(sh->key = 0))
+	while (!(key = 0))
 	{
-		if (read(STDIN_FILENO, &sh->key, 8) < 0)
+		if (read(STDIN_FILENO, &key, 8) < 0)
 			break ;
-		printf("[%d] [%d] [%d] [%d] [%d] [%d] [%d] [%d]\n", ((unsigned char *)(&(sh->key)))[0], ((unsigned char *)(&(sh->key)))[1], ((unsigned char *)(&(sh->key)))[2], ((unsigned char *)(&(sh->key)))[3], ((unsigned char *)(&(sh->key)))[4], ((unsigned char *)(&(sh->key)))[5], ((unsigned char *)(&(sh->key)))[6], ((unsigned char *)(&(sh->key)))[7]);
+		printf("[%d] [%d] [%d] [%d] [%d] [%d] [%d] [%d]\n", ((unsigned char *)(&(key)))[0], ((unsigned char *)(&(key)))[1], ((unsigned char *)(&(key)))[2], ((unsigned char *)(&(key)))[3], ((unsigned char *)(&(key)))[4], ((unsigned char *)(&(key)))[5], ((unsigned char *)(&(key)))[6], ((unsigned char *)(&(key)))[7]);
 		ft_putstr(tgetstr("cr", NULL));
 		/*
-		if (ft_isprint(sh->key))
-			insert_buffer(sh, (char)sh->key);
-		else if (sh->key == LEFT_KEY)
+		if (ft_isprint(key))
+			insert_buffer(sh, (char)key);
+		else if (key == LEFT_KEY)
 			move_left_cursor(sh, &(sh->in->buf_i));
-		else if (sh->key == RIGHT_KEY)
+		else if (key == RIGHT_KEY)
 			move_right_cursor(sh, &(sh->in->buf_i));
-		else if (sh->key == DELETE_KEY)
+		else if (key == DELETE_KEY)
 			delete_buffer(sh);
-		else if (sh->key == UP_KEY)
+		else if (key == UP_KEY)
 			up_history(sh);
-		else if (sh->key == DOWN_KEY)
+		else if (key == DOWN_KEY)
 			down_history(sh);
-		else if (sh->key == ENTER_KEY)
+		else if (key == ENTER_KEY)
 		{
 			sh->history_save = -2;
 			break ;

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:00:32 by schakor           #+#    #+#             */
-/*   Updated: 2018/10/29 15:59:09 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/22 18:59:41 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int					ft_min(int x, int y);
 int					ft_max(int x, int y);
 
 /*
-**		LINKED LISTS
+**		LINKED LISTS FUNCTIONS
 */
 
 typedef struct		s_list

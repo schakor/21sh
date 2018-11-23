@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 14:45:16 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/23 17:19:49 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct				s_input
 	size_t					buf_i;
 	size_t					bufsize;
 	size_t					buftmp;
+	t_uint8					bufkey[8];
 }							t_input;
 
 typedef struct				s_token
@@ -92,6 +93,14 @@ typedef struct				s_history
 	struct s_history		*next;
 	struct s_history		*bfr;
 }							t_history;
+
+typedef struct				s_trie
+{
+	struct s_trie			*children;
+	struct s_trie			*next;
+	unsigned char			key;
+	unsigned long long		value;
+}							t_trie;
 
 typedef struct				s_shell
 {
