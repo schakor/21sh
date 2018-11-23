@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 20:22:18 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/23 17:59:18 by schakor          ###   ########.fr       */
+/*   Updated: 2018/11/23 19:04:26 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ static int				check_key(t_shell *sh, t_uint8 key[8], int *i)
 		(key[0] == 27 && key[1] == 91 && key[2] == 49 && key[3] == 0) ||
 		(key[0] == 27 && key[1] == 91 && key[2] == 49 && key[3] == 59 && key[4] == 0))
 		return (1);
-	ft_memset(sh->in->bufkey, 0, 8);
-	*i = 0;
+	if (key[0] == 27)
+	{
+		ft_memset(sh->in->bufkey, 0, 8);
+		*i = 0;
+	}
 	return (0);
 }
 
@@ -78,17 +81,17 @@ void					read_raw_mode(t_shell *sh)
 				i = 0;
 			}
 		}
-		else
+		else if (sh->in->bufkey[0])
 		{
-			if (key == ENTER_KEY)
+			if (sh->in->bufkey[0] == ENTER_KEY)
 			{
 				sh->history_save = -2;
 				break;
 			}
-			else if (key == DELETE_KEY)
+			else if (sh->in->bufkey[0] == DELETE_KEY)
 				delete_buffer(sh);
 			else
-				insert_buffer(sh, (char)key);
+				insert_buffer(sh, (char)sh->in->bufkey[0]);
 			i = 0;
 			ft_memset(sh->in->bufkey, 0, 8);
 		}
