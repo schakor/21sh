@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_history.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/28 11:38:33 by khsadira          #+#    #+#             */
+/*   Updated: 2018/11/28 12:05:56 by khsadira         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "twenty_one_sh.h"
 
 static char	**file_to_buffer(int fd, char **buffer)
@@ -15,6 +27,8 @@ static char	**file_to_buffer(int fd, char **buffer)
 		buff[ret] = '\0';
 		str = ft_strfreejoin(&str, buff);
 	}
+	if (str == NULL)
+		return (NULL);
 	close(fd);
 	if (str)
 		buffer = ft_strsplit(str, '\n');
@@ -44,9 +58,10 @@ void	history_from_file(t_shell *sh, char *path)
 		i++;
 	}
 	i = 0;
-	while (buffer[i])
+	while (buffer && buffer[i])
 		ft_strdel(&buffer[i++]);
-	free(buffer);
+	if (buffer)
+		free(buffer);
 	ft_strdel(&path);
 }
 
@@ -70,7 +85,8 @@ void	file_from_history(t_shell *sh, char *path)
 			str = ft_strfreejoin(&str, "\n");
 			sh->history = sh->history->next;
 		}
-		write(fd, str, ft_strlen(str));
+		if (str)
+			write(fd, str, ft_strlen(str));
 		ft_strdel(&str);
 		ft_strdel(&path);
 		close (fd);
