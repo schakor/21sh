@@ -6,15 +6,15 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:38:33 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/28 12:05:56 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/28 12:08:36 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-static char	**file_to_buffer(int fd, char **buffer)
+static char		**file_to_buffer(int fd, char **buffer)
 {
-	int	ret;
+	int		ret;
 	char	buff[2];
 	char	*str;
 
@@ -36,38 +36,38 @@ static char	**file_to_buffer(int fd, char **buffer)
 	return (buffer);
 }
 
-void	history_from_file(t_shell *sh, char *path)
+void			history_from_file(t_shell *sh, char *path)
 {
-	char		**buffer;
-	int		i;
-	int		fd;
+	char		**buff;
+	int			i;
+	int			fd;
 	t_history	*new_ele;
 
 	path = ft_strfreejoin(&path, "/.21sh_history");
-	buffer = NULL;
+	buff = NULL;
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return ;
-	buffer = file_to_buffer(fd, buffer);
+	buff = file_to_buffer(fd, buff);
 	close(fd);
-	while (buffer && buffer[i])
+	while (buff && buff[i])
 	{
-		new_ele = new_hist(buffer[i], ft_strlen(buffer[i]), ft_strlen(buffer[i]));
+		new_ele = new_hist(buffer[i], ft_strlen(buff[i]), ft_strlen(buff[i]));
 		sh->history = add_hist(sh->history, new_ele);
 		i++;
 	}
 	i = 0;
-	while (buffer && buffer[i])
-		ft_strdel(&buffer[i++]);
-	if (buffer)
-		free(buffer);
+	while (buff && buff[i])
+		ft_strdel(&buff[i++]);
+	if (buff)
+		free(buff);
 	ft_strdel(&path);
 }
 
-void	file_from_history(t_shell *sh, char *path)
+void			file_from_history(t_shell *sh, char *path)
 {
-	int	fd;
+	int		fd;
 	char	*str;
 
 	path = ft_strfreejoin(&path, "/.21sh_history");
@@ -89,6 +89,6 @@ void	file_from_history(t_shell *sh, char *path)
 			write(fd, str, ft_strlen(str));
 		ft_strdel(&str);
 		ft_strdel(&path);
-		close (fd);
+		close(fd);
 	}
 }
