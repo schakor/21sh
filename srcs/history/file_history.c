@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:38:33 by khsadira          #+#    #+#             */
-/*   Updated: 2018/11/28 12:08:36 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/11/28 14:24:43 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			history_from_file(t_shell *sh, char *path)
 	close(fd);
 	while (buff && buff[i])
 	{
-		new_ele = new_hist(buffer[i], ft_strlen(buff[i]), ft_strlen(buff[i]));
+		new_ele = new_hist(buff[i], ft_strlen(buff[i]), ft_strlen(buff[i]));
 		sh->history = add_hist(sh->history, new_ele);
 		i++;
 	}
