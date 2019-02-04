@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2018/12/22 17:04:32 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 14:11:13 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "env.h"
 # include "reader.h"
 # include "readline.h"
+# include "history.h"
 
 t_termios					g_cooked_tio;
 

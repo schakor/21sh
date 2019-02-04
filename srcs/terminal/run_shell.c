@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:24:42 by schakor           #+#    #+#             */
-/*   Updated: 2019/01/26 16:00:34 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 13:32:00 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void				run_shell(t_shell *sh)
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
 		ft_putstr(sh->line);
-		if (ft_strequ(sh->line, "exit"))
+		if (ft_strequ(sh->line, "history"))
+			history_cmd(sh);
+		else if (ft_strequ(sh->line, "exit"))
 		{
 			reset_terminal(sh);
 			exit(EXIT_FAILURE);

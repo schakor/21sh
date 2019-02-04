@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:26:32 by schakor           #+#    #+#             */
-/*   Updated: 2019/01/26 15:38:33 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 14:24:29 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ struct						s_shell
 	int						sigtstp_sig;
 	char					*line;
 	char					**env;
+	t_history				*history;
+	int						history_size;
+	int						history_save;
 	t_envl					*envl;
 	t_termios				cooked_tio;
 	t_termios				raw_tio;
