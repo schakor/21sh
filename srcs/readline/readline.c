@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:04:47 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/01 19:03:41 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 14:24:14 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static t_keymap				g_keymap[MODES][KEYMAP_SIZE] = {
 		{KEYSTR_ESC_D, rl_delete_esc_d},
 		{KEYSTR_CTRL_W, rl_delete_ctrl_w},
 		{KEYSTR_LEFT_ARROW, rl_backward_char},
-		{KEYSTR_RIGHT_ARROW, rl_forward_char}
+		{KEYSTR_RIGHT_ARROW, rl_forward_char},
+		{KEYSTR_HOME, rl_beg_of_line},
+		{KEYSTR_END, rl_end_of_line}
+
 	},
 	{
 		{NULL, NULL},
