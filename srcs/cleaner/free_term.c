@@ -6,13 +6,13 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 21:45:10 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 13:33:33 by schakor          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:32:17 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void			free_envl(t_envl *list)
+void			clean_envl(t_envl *list)
 {
 	t_envl		*tmp;
 
@@ -26,37 +26,13 @@ void			free_envl(t_envl *list)
 	}
 }
 
-void			free_input(t_input *list)
-{
-	if (list)
-	{
-		ft_strdel(&(list->buffer));
-		free(list);
-		list = NULL;
-	}
-}
-
-void			free_history(t_history *list)
-{
-	t_history	*tmp;
-
-	while (list)
-	{
-		ft_strdel(&(list->buffer));
-		tmp = list;
-		list = list->next;
-		free(tmp);
-	}
-}
-
-void			free_term(t_shell *sh)
+void			clean_shell(t_shell *sh)
 {
 	if (sh)
 	{
+		reset_terminal(sh);
 		ft_arrdel(sh->env);
-		free_envl(sh->envl);
-		free_input(sh->in);
-		free_history(sh->history);
+		clean_envl(sh->envl);
 		free(sh);
 	}
 }

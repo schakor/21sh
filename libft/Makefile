@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/14 17:56:43 by schakor           #+#    #+#              #
-#    Updated: 2018/10/30 13:21:25 by schakor          ###   ########.fr        #
+#    Updated: 2018/12/17 18:12:49 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ SRC_FILES	=	array/ft_arrdup.c\
 				string/ft_strcmp.c\
 				string/ft_strequ.c\
 				string/ft_strjoinjoin.c\
-				string/ft_strfreejoin.c\
+				string/ft_strfjoin.c\
 				string/ft_strmapi.c\
 				string/ft_strnequ.c\
 				string/ft_strsplit.c\
@@ -97,7 +97,9 @@ SRC_FILES	=	array/ft_arrdup.c\
 				type/ft_isdigit.c\
 				type/ft_islower.c\
 				type/ft_isquote.c\
-				type/ft_strtolower.c
+				type/ft_strtolower.c\
+				type/ft_first_char_unicode.c\
+				type/ft_isnotprint.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

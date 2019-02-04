@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2018/11/23 18:45:07 by schakor          ###   ########.fr        #
+#    Updated: 2019/02/01 18:49:29 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,22 +29,23 @@ SRC_PATH	= ./srcs
 OBJ_PATH	= ./objs
 
 SRC_FILES	=	main.c\
+				readline/readline.c\
+				readline/rl_termcaps.c\
+				readline/rl_buffer.c\
+				readline/rl_prompt.c\
+				readline/rl_moving_ctrl.c\
+				readline/rl_moving_esc.c\
+				readline/rl_delete_ctrl.c\
+				readline/rl_delete_line.c\
 				terminal/init_shell.c\
 				terminal/init_terminal.c\
+				terminal/run_shell.c\
+				terminal/singleton_shell.c\
 				terminal/display_prompt.c\
 				env/addlast_envl.c\
 				env/envarr_2_envl.c\
 				env/get_env_val.c\
 				env/push_env.c\
-				reader/read_raw_mode.c\
-				reader/increase_buffer.c\
-				reader/insert_buffer.c\
-				reader/termcaps.c\
-				history/controler_history.c\
-				history/list_history.c\
-				history/down_history.c\
-				history/up_history.c\
-				history/file_history.c\
 				signal/ft_signal.c\
 				cleaner/free_term.c\
 				cleaner/fatal_exit.c

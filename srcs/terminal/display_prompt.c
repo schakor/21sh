@@ -16,8 +16,8 @@ void		display_prompt(t_shell *sh)
 {
 	char	*cwd;
 	char	buff[4097];
-	int		i;
-	int		len;
+	size_t	i;
+	size_t	len;
 	char	*tmp;
 
 	tmp = NULL;
@@ -34,7 +34,7 @@ void		display_prompt(t_shell *sh)
 	ft_putstr("\033[0;31m");
 	ft_putstr("<");
 	if (tmp)
-	ft_putstr(tmp);
+		ft_putstr(tmp);
 	ft_putstr("> ");
 	ft_putstr("\033[0m");
 	sh->len_prompt = ft_strlen(tmp) + 3;

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 16:01:24 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/15 14:21:23 by schakor          ###   ########.fr       */
+/*   Updated: 2019/01/26 15:37:28 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void			init_terminal(t_shell *sh)
 		fatal_exit(sh, SH_EINVAL);
 }
 
-void			reset_terminal(void)
+void			reset_terminal(t_shell *sh)
 {
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &g_cooked_tio))
-		exit(EXIT_FAILURE);
-	//	fatal_exit(sh, SH_EINVAL);
+		fatal_exit(sh, SH_ENOMEM);
 }

@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 15:29:22 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/19 11:30:54 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:00:31 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void				init_env_var(t_shell *sh, char **env)
 {
 	sh->env = ft_arrdup(env);
 	sh->envl = envarr_2_envl(env);
+	sh->sigtstp_sig = 0;
 }
 
 t_shell					*init_shell(int ac, char **av, char **env)
@@ -24,17 +25,8 @@ t_shell					*init_shell(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	if (!(sh = (t_shell *)malloc(sizeof(*sh))))
-		fatal_exit(sh, SH_ENOMEM);
+	sh = singleton_shell();
 	init_env_var(sh, env);
-	sh->key = 0;
-	sh->len_prompt = 0;
-	sh->in = NULL;
-	sh->tk = NULL;
-	sh->root = NULL;
 	init_terminal(sh);
-	sh->history = NULL;
-	sh->history_save = -2;
-	history_from_file(sh, get_env_val(sh->envl, "HOME"));
 	return (sh);
 }

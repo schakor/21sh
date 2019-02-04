@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:00:32 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/22 18:59:41 by schakor          ###   ########.fr       */
+/*   Updated: 2019/01/30 17:21:31 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoinjoin(char *s1, char *s2, char *s3);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_strfreejoin(char **over, char *buff);
+char				*ft_strfjoin(char *s1, char *s2, int opt);
 
 /*
 **		CHAR ** FUNCTIONS
@@ -92,7 +92,8 @@ int					ft_islower(int c);
 char				*ft_strtolower(char *str);
 int					ft_isquote(int c);
 int					ft_isescaped(char *s, int index);
-
+int					ft_isnotprint(int c);
+int 				ft_first_char_unicode(int c);
 /*
 **		OUTPUT FUNCTIONS
 */
