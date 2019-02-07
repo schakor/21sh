@@ -27,7 +27,6 @@ t_shell					*init_shell(int ac, char **av, char **env)
 	(void)av;
 	sh = singleton_shell();
 	init_env_var(sh, env);
-	init_terminal(sh);
 	return (sh);
 }
 
@@ -48,7 +47,9 @@ void					run_shell(t_shell *sh)
 	run = TRUE;
 	while (run == TRUE)
 	{
+		init_terminal(sh);
 		readline(sh);
+		reset_terminal(sh);
 		write(1, "\n", 1);
 		ft_putstr(tgetstr("cr", NULL));
 		ft_putstr(sh->line);
