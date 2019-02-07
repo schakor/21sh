@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2019/02/04 14:12:47 by khsadira         ###   ########.fr        #
+#    Updated: 2019/02/06 14:58:09 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,8 @@ SRC_FILES	=	main.c\
 				readline/rl_moving_esc.c\
 				readline/rl_delete_ctrl.c\
 				readline/rl_delete_line.c\
-				terminal/init_shell.c\
-				terminal/init_terminal.c\
-				terminal/run_shell.c\
-				terminal/singleton_shell.c\
-				terminal/display_prompt.c\
+				terminal/terminal.c\
+				terminal/shell.c\
 				env/addlast_envl.c\
 				env/envarr_2_envl.c\
 				env/get_env_val.c\

@@ -16,7 +16,6 @@ t_envl		*addlast_envl(t_envl *head, t_envl *new)
 {
 	t_envl	*tmp;
 
-	tmp = NULL;
 	if (head == NULL)
 		return (new);
 	else if (new == NULL)

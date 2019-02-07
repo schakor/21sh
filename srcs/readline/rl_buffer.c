@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:13:26 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/04 14:20:52 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 17:00:15 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void				rl_increase_buffer(t_rl *rl)
 {
 	char			*ret;
 
-	if (!(ret = (char *)ft_memalloc(rl->rl_tot + BUF_TMP + 1)))
+	if (!(ret = (char *)ft_memalloc(rl->bufvar.len_tot + BUF_TMP + 1)))
 		fatal_exit(singleton_shell(), SH_ENOMEM);
-	ft_memcpy(ret, rl->buf, rl->len_buf);
-	rl->rl_tot += BUF_TMP;
+	ft_memcpy(ret, rl->buf, rl->bufvar.len_buf);
+	rl->bufvar.len_tot += BUF_TMP;
 	ft_strdel(&(rl->buf));
 	rl->buf = ret;
 }
@@ -32,21 +32,21 @@ void				rl_insert_buffer(t_rl *rl, unsigned char c)
 		return ;
 	if (ft_first_char_unicode(c))
 	{
-		rl->nb_char++;
-		rl->i_char++;
+		rl->bufvar.len_char++;
+		rl->bufvar.i_char++;
 	}
-	i = rl->len_buf;
-	ft_memmove(rl->buf + rl->i_buf + 1, rl->buf\
-			+ rl->i_buf, i - rl->i_buf);
-	rl->buf[rl->i_buf] = c;
+	i = rl->bufvar.len_buf;
+	ft_memmove(rl->buf + rl->bufvar.i_buf + 1, rl->buf\
+			+ rl->bufvar.i_buf, i - rl->bufvar.i_buf);
+	rl->buf[rl->bufvar.i_buf] = c;
 	rl_move_start(rl);
 	ft_putstr(tgetstr("cd", NULL));
 	rl_display_prompt(rl->prompt);
-	rl->len_buf++;
-	write(STDOUT_FILENO, rl->buf, rl->len_buf);
-	i = rl->nb_char;
-	rl->i_buf++;
-	while (i > rl->i_char)
+	rl->bufvar.len_buf++;
+	write(STDOUT_FILENO, rl->buf, rl->bufvar.len_buf);
+	i = rl->bufvar.len_char;
+	rl->bufvar.i_buf++;
+	while (i > rl->bufvar.i_char)
 	{
 		ft_putstr(tgetstr("le", NULL));
 		i--;
@@ -57,16 +57,16 @@ static void			rl_delete_buffer_multi_bytes(t_rl *rl, int nb_bytes)
 {
 	size_t			i;
 
-	ft_memcpy(rl->buf + rl->i_buf - nb_bytes, rl->buf +\
-			rl->i_buf, rl->len_buf - rl->i_buf + nb_bytes);
+	ft_memcpy(rl->buf + rl->bufvar.i_buf - nb_bytes, rl->buf +\
+			rl->bufvar.i_buf, rl->bufvar.len_buf - rl->bufvar.i_buf + nb_bytes);
 	rl_move_start(rl);
 	ft_putstr(tgetstr("cd", NULL));
 	rl_display_prompt(rl->prompt);
-	rl->len_buf -= nb_bytes;
-	write(1, rl->buf, rl->len_buf);
-	i = rl->nb_char;
-	rl->i_buf -= nb_bytes;
-	while (i > rl->i_char)
+	rl->bufvar.len_buf -= nb_bytes;
+	write(1, rl->buf, rl->bufvar.len_buf);
+	i = rl->bufvar.len_char;
+	rl->bufvar.i_buf -= nb_bytes;
+	while (i > rl->bufvar.i_char)
 	{
 		ft_putstr(tgetstr("le", NULL));
 		i--;
@@ -92,11 +92,11 @@ void				rl_delete_buffer(t_rl *rl)
 {
 	int				nb_bytes;
 
-	if (rl->i_char > 0)
+	if (rl->bufvar.i_char > 0)
 	{
-		nb_bytes = get_nb_bytes(rl, rl->i_buf - 1);
+		nb_bytes = get_nb_bytes(rl, rl->bufvar.i_buf - 1);
 		rl_delete_buffer_multi_bytes(rl, nb_bytes);
-		rl->i_char--;
-		rl->nb_char--;
+		rl->bufvar.i_char--;
+		rl->bufvar.len_char--;
 	}
 }

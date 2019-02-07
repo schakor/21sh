@@ -6,36 +6,35 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 13:33:25 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/04 10:39:48 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:23:53 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void	switch_history(t_shell *sh)
+void	rl_switch_history(t_rl *rl)
 {
 	t_history	*head;
 	int			i;
 
 	i = 0;
-	head = sh->history;
-	if (!sh->in->buffer || sh->in->buffer[0] == '\0')
+	head = rl->history;
+	if (!rl->buf || rl->buf[0] == '\0')
 		return ;
-	while (i < sh->history_save && sh->history->bfr)
+	while (i < rl->history_save && rl->history->bfr)
 	{
-		sh->history = sh->history->bfr;
+		rl->history = rl->history->bfr;
 		i++;
 	}
-	if (!ft_strequ(sh->history->buffer, sh->in->buffer))
+	if (!ft_strequ(rl->history->buf, rl->buf))
 	{
-		ft_strdel(&sh->history->buffer);
-		if (!(sh->history->buffer = (char *)ft_memalloc(sh->in->buftmp)))
-			fatal_exit(sh, SH_ENOMEM);
-		ft_memcpy(sh->history->buffer, sh->in->buffer, sh->in->bufsize);
-		sh->history->buftmp = sh->in->buftmp;
-		sh->history->bufsize = sh->in->bufsize;
+		ft_strdel(&rl->history->buf);
+		if (!(rl->history->buf = (char *)ft_memalloc(rl->bufvar.len_tot)))
+			fatal_exit(singleton_shell(), SH_ENOMEM);
+		ft_memcpy(rl->history->buf, rl->buf, rl->bufvar.len_buf);
+		rl->history->bufvar = rl->bufvar;
 	}
-	sh->history = head;
+	rl->history = head;
 }
 
 int		listlen(t_history *list)
@@ -51,25 +50,23 @@ int		listlen(t_history *list)
 	return (i);
 }
 
-void	print_history(t_shell *sh)
+void	rl_print_history(t_rl *rl)
 {
-	move_start(sh);
+	rl_move_start(rl);
 	ft_putstr(tgetstr("cd", NULL));
-	display_prompt(sh);
-	ft_strdel(&sh->in->buffer);
-	if (!(sh->in->buffer = (char *)ft_memalloc(sh->history->buftmp)))
+	rl_display_prompt(rl->prompt);
+	ft_strdel(&(rl->buf));
+	if (!(rl->buf = (char *)ft_memalloc(rl->history->bufvar.len_tot)))
 		return ;
-	ft_memcpy(sh->in->buffer, sh->history->buffer, sh->history->bufsize);
-	sh->in->buftmp = sh->history->buftmp;
-	sh->in->bufsize = sh->history->bufsize;
-	sh->in->buf_i = sh->history->bufsize;
-	write(1, sh->in->buffer, sh->in->bufsize);
+	ft_memcpy(rl->buf, rl->history->buf, rl->history->bufvar.len_buf);
+	rl->bufvar = rl->history->bufvar;
+	write(1, rl->buf, rl->bufvar.len_buf);
 }
 
-void	add_history(t_shell *sh)
+void	rl_add_history(t_rl *rl)
 {
 	t_history	*new_ele;
 
-	new_ele = new_hist(sh->in->buffer, sh->in->bufsize, sh->in->buftmp);
-	sh->history = add_hist(sh->history, new_ele);
+	new_ele = rl_new_hist(rl->buf, rl->bufvar);
+	rl->history = rl_add_hist(rl->history, new_ele);
 }

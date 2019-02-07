@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/04 14:11:13 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:25:09 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 # include <curses.h>
 # include <term.h>
 # include <sys/ioctl.h>
+# include <stdint.h>
 
 # include "sh_typedefs.h"
 # include "sh_defines.h"
 # include "shell.h"
 # include "env.h"
-# include "reader.h"
 # include "readline.h"
-# include "history.h"
 
 t_termios					g_cooked_tio;
 

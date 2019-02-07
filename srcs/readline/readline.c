@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:04:47 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/04 14:24:14 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/06 16:27:49 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static t_keymap				g_keymap[MODES][KEYMAP_SIZE] = {
 		{KEYSTR_CTRL_W, rl_delete_ctrl_w},
 		{KEYSTR_LEFT_ARROW, rl_backward_char},
 		{KEYSTR_RIGHT_ARROW, rl_forward_char},
+		{KEYSTR_UP_ARROW, rl_get_prev_history},
+		{KEYSTR_DOWN_ARROW, rl_get_next_history},
 		{KEYSTR_HOME, rl_beg_of_line},
-		{KEYSTR_END, rl_end_of_line}
+		{KEYSTR_END, rl_end_of_line},
+		{KEYSTR_RETURN, rl_end_of_read}
 
 	},
 	{
@@ -116,19 +119,14 @@ static void					read_stdin(t_rl *rl)
 
 static void					rl_main_work(t_rl *rl)
 {
-	t_bool					reading;
-
-	reading = TRUE;
-	while (reading == TRUE)
+	while (rl->reading == TRUE)
 	{
 		read_stdin(rl);
 		if (rl->keymap_index >= 0)
 			g_keymap[0][rl->keymap_index].rl_command_func(rl);
-		else if (rl->bufkey[0] == ENTER_KEY)
-			reading = FALSE;
 		else if (rl->keymap_index == -1)
 			rl_insert_buffer(rl, rl->bufkey[0]);
-		if (rl->len_buf >= rl->rl_tot)
+		if (rl->bufvar.len_buf >= rl->bufvar.len_tot)
 			rl_increase_buffer(rl);
 	}
 }
@@ -137,13 +135,17 @@ static void					rl_init(t_rl *rl)
 {
 	if (!(rl->buf = (char *)ft_memalloc(BUF_TMP + 1)))
 		fatal_exit(singleton_shell(), SH_ENOMEM);
-	rl->nb_char = 0;
-	rl->i_char = 0;
-	rl->i_buf = 0;
-	rl->len_buf = 0;
-	rl->rl_tot = BUF_TMP;
-	ft_memset(rl->bufkey, 0, 8);
+	rl->bufvar.i_char = 0;
+	rl->bufvar.len_char = 0;
+	rl->bufvar.i_buf = 0;
+	rl->bufvar.len_buf = 0;
+	rl->bufvar.len_tot = BUF_TMP;
+	ft_memset(rl->bufkey, 0, sizeof(rl->bufkey));
 	rl->bufkey_index = 0;
+	rl->history = NULL;
+	rl->reading = TRUE;
+	rl->history_save = 0;
+	rl_history_from_file(rl, ft_strdup("/Users/schakor"));
 }
 
 void						readline(t_shell *sh)
@@ -155,4 +157,5 @@ void						readline(t_shell *sh)
 	rl_display_prompt(rl.prompt);
 	rl_main_work(&rl);
 	sh->line = rl.buf;
+	sh->history = rl.history;
 }

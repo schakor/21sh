@@ -14,13 +14,13 @@
 
 void				rl_beg_of_line(t_rl *rl)
 {
-	while (rl->i_char != 0)
+	while (rl->bufvar.i_char != 0)
 		rl_backward_char(rl);
 }
 
 void				rl_end_of_line(t_rl *rl)
 {
-	while (rl->i_char < rl->nb_char)
+	while (rl->bufvar.i_char < rl->bufvar.len_char)
 		rl_forward_char(rl);
 }
 
@@ -33,15 +33,15 @@ void				rl_backward_char(t_rl *rl)
 {
 	size_t			i;
 
-	i = rl->i_buf;
-	if (rl->i_char > 0)
+	i = rl->bufvar.i_buf;
+	if (rl->bufvar.i_char > 0)
 	{
-		rl->i_char--;
+		rl->bufvar.i_char--;
 		i--;
 		while ((rl->buf[i] & (1 << 7) && !(rl->buf[i] & (1 << 6))))
 			i--;
 		ft_putstr(tgetstr("le", NULL));
-		rl->i_buf = i;
+		rl->bufvar.i_buf = i;
 	}
 }
 
@@ -51,20 +51,21 @@ void				rl_forward_char(t_rl *rl)
 	struct winsize	w;
 
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &w);
-	if (rl->i_char >= rl->nb_char)
+	if (rl->bufvar.i_char >= rl->bufvar.len_char)
 		return ;
-	if (rl->i_char != 0 && ((rl->i_char + rl->len_prompt + 1) % w.ws_col == 0))
+	if (rl->bufvar.i_char != 0 &&
+	((rl->bufvar.i_char + rl->len_prompt + 1) % w.ws_col == 0))
 	{
 		ft_putstr(tgetstr("cr", NULL));
 		ft_putstr(tgetstr("do", NULL));
 	}
 	else
 		ft_putstr(tgetstr("nd", NULL));
-	rl->i_char++;
-	i = ++rl->i_buf;
+	rl->bufvar.i_char++;
+	i = ++rl->bufvar.i_buf;
 	if (!(rl->buf[i] & (1 << 7)))
 		return ;
 	while ((rl->buf[i] & (1 << 7) && !(rl->buf[i] & (1 << 6))))
 		i++;
-	rl->i_buf = i;
+	rl->bufvar.i_buf = i;
 }

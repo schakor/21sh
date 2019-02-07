@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 16:39:00 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/04 14:09:34 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/04 16:57:14 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@
 # define KEYSTR_DOWN_ARROW		"\033[B"
 # define KEYSTR_HOME			"\033[H"
 # define KEYSTR_END				"\033[F"
+# define KEYSTR_RETURN			"\012"
 
 # define MODES					3
 # define MODE_EMACS				0
 # define MODE_VI_INSERT			1
 # define MODE_VI_COMMAND		2
-# define KEYMAP_SIZE			18
+# define KEYMAP_SIZE			21
 
 #endif

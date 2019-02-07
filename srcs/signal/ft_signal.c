@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:13:02 by khsadira          #+#    #+#             */
-/*   Updated: 2018/12/17 14:16:21 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/06 16:36:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_signal(int signo)
 	{
 		reset_terminal(singleton_shell());
 		ft_putstr("\n");
-		ft_putendl_fd("Khan please tell me, why does the program abort ?", STDERR_FILENO);
+		ft_putendl_fd("Khan , why does the program abort ?", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

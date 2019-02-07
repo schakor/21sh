@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:00:32 by schakor           #+#    #+#             */
-/*   Updated: 2019/01/30 17:21:31 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/06 10:17:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void				ft_memdel(void **ap);
 **		STRING FUNCTIONS
 */
 
+size_t				ft_wslen(char *str);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
 char				*ft_strcpy(char *dst, const char *src);
@@ -93,7 +94,7 @@ char				*ft_strtolower(char *str);
 int					ft_isquote(int c);
 int					ft_isescaped(char *s, int index);
 int					ft_isnotprint(int c);
-int 				ft_first_char_unicode(int c);
+int					ft_first_char_unicode(int c);
 /*
 **		OUTPUT FUNCTIONS
 */

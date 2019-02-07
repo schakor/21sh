@@ -6,10 +6,9 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 15:28:17 by schakor           #+#    #+#             */
-/*   Updated: 2019/01/30 14:36:32 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/06 15:08:58 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef READLINE_H
 # define READLINE_H
@@ -27,19 +26,37 @@ struct					s_keymap
 	t_rl_command_func	rl_command_func;
 };
 
-struct					s_rl
+struct					s_bufvar
 {
-	char				*buf;
-	char				*prompt;
-	size_t				nb_char;
 	size_t				i_char;
-	size_t				len_prompt;
+	size_t				len_char;
 	size_t				i_buf;
 	size_t				len_buf;
-	size_t				rl_tot;
-	t_uint8				bufkey[8];
+	size_t				len_tot;
+};
+
+struct					s_history
+{
+	char					*buf;
+	t_bufvar				bufvar;
+	t_history				*next;
+	t_history				*bfr;
+};
+
+struct					s_rl
+{
+	char				*prompt;
+	size_t				len_prompt;
+	char				*buf;
+	t_bufvar			bufvar;
+	uint8_t				bufkey[8];
 	size_t				bufkey_index;
 	int					keymap_index;
+	t_history			*history;
+	t_bool				reading;
+	int					history_save;
+	int					history_size;
+
 };
 
 void					readline(t_shell *sh);
@@ -63,5 +80,16 @@ void					rl_delete_endline(t_rl *rl);
 void					rl_delete_esc_d(t_rl *rl);
 void					rl_delete_ctrl_w(t_rl *rl);
 void					rl_ctrl_d(t_rl *rl);
+void					rl_get_next_history(t_rl *rl);
+void					rl_get_prev_history(t_rl *rl);
+void					rl_add_history(t_rl *rl);
+void					rl_end_of_read(t_rl *rl);
+void					rl_switch_history(t_rl *rl);
+void					rl_print_history(t_rl *rl);
+t_history				*rl_new_hist(char *buffer, t_bufvar bufvar);
+t_history				*rl_add_hist(t_history *list, t_history *new_hist);
+void					rl_history_from_file(t_rl *rl, char *path);
+void					rl_file_from_history(t_rl *rl, char *path);
+int						listlen(t_history *list);
 
 #endif

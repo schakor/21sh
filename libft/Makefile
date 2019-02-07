@@ -88,6 +88,7 @@ SRC_FILES	=	array/ft_arrdup.c\
 				string/ft_strmapi.c\
 				string/ft_strnequ.c\
 				string/ft_strsplit.c\
+				string/ft_wslen.c\
 				type/ft_isalnum.c\
 				type/ft_isascii.c\
 				type/ft_isescaped.c\

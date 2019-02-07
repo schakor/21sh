@@ -17,7 +17,6 @@
 # define SH_EINVAL			2
 # define SH_ENOTTY			3
 # define BUF_TMP			32
-# define ENTER_KEY			10
 
 # define TRUE				1
 # define FALSE				0

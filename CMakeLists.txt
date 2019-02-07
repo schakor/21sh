@@ -7,7 +7,6 @@ include_directories(includes)
 include_directories(libft/includes)
 
 set(SOURCE includes/env.h
-        includes/reader.h
         includes/readline.h
         includes/rl_defines.h
         includes/rl_typedefs.h
@@ -111,13 +110,17 @@ set(SOURCE includes/env.h
         srcs/readline/rl_termcaps.c
         srcs/readline/rl_undo.c
         srcs/readline/rl_delete_ctrl.c
+        srcs/readline/rl_delete_line.c
         srcs/signal/ft_signal.c
-        srcs/terminal/display_prompt.c
-        srcs/terminal/init_shell.c
-        srcs/terminal/init_terminal.c
-        srcs/terminal/run_shell.c
-        srcs/terminal/singleton_shell.c
-        srcs/main.c libft/srcs/type/ft_first_char_unicode.c srcs/readline/rl_delete_ctrl.c)
+        srcs/terminal/terminal.c
+        srcs/terminal/shell.c
+        srcs/history/controler_history.c
+        srcs/history/down_history.c
+        srcs/history/file_history.c
+        srcs/history/list_history.c
+        srcs/history/up_history.c
+        srcs/history/history_cmd.c
+        srcs/main.c libft/srcs/type/ft_first_char_unicode.c srcs/readline/rl_delete_ctrl.c libft/srcs/string/ft_wslen.c)
 
 add_executable(21sh ${SOURCE})
 target_link_libraries(21sh termcap)

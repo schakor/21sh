@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:38:33 by khsadira          #+#    #+#             */
-/*   Updated: 2019/01/08 18:31:45 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:23:53 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ static char		**file_to_buffer(int fd, char **buffer)
 	char	buff[2];
 	char	*str;
 
-	ret = 0;
 	buff[0] = 0;
 	buff[1] = 0;
 	str = NULL;
 	while ((ret = read(fd, buff, 1)) > 0)
 	{
+		if (str == NULL)
+			str = ft_strnew(0);
 		buff[ret] = '\0';
-		str = ft_strfreejoin(&str, buff);
+		str = ft_strfjoin(str, buff, 0);
 	}
 	if (str == NULL)
 		return (NULL);
@@ -36,55 +37,62 @@ static char		**file_to_buffer(int fd, char **buffer)
 	return (buffer);
 }
 
-void			history_from_file(t_shell *sh, char *path)
+static void		init_bufvar(t_bufvar *bufvar, char *str)
+{
+	bufvar->i_buf = ft_strlen(str);
+	bufvar->len_buf = ft_strlen(str);
+	bufvar->i_char = ft_wslen(str);
+	bufvar->len_char = ft_wslen(str);
+	bufvar->len_tot = ft_strlen(str);
+}
+
+void			rl_history_from_file(t_rl *rl, char *path)
 {
 	char		**buff;
 	int			i;
 	int			fd;
 	t_history	*new_ele;
+	t_bufvar	bufvar;
 
-	path = ft_strfreejoin(&path, "/.21sh_history");
+	path = ft_strfjoin(path, "/.21sh_history", 0);
 	buff = NULL;
 	i = 0;
-	fd = open(path, O_RDONLY);
+	fd = open(path, O_RDWR | O_CREAT, 0666);
 	if (fd < 0)
 		return ;
 	buff = file_to_buffer(fd, buff);
 	close(fd);
 	while (buff && buff[i])
 	{
-		sh->history_size++;
-		new_ele = new_hist(buff[i], ft_strlen(buff[i]), ft_strlen(buff[i]));
-		sh->history = add_hist(sh->history, new_ele);
+		rl->history_size++;
+		init_bufvar(&bufvar, buff[i]);
+		new_ele = rl_new_hist(buff[i], bufvar);
+		rl->history = rl_add_hist(rl->history, new_ele);
 		i++;
 	}
-	i = 0;
-	while (buff && buff[i])
-		ft_strdel(&buff[i++]);
-	if (buff)
-		free(buff);
+	ft_arrdel(buff);
 	ft_strdel(&path);
 }
 
-void			file_from_history(t_shell *sh, char *path)
+void			rl_file_from_history(t_rl *rl, char *path)
 {
 	int		fd;
 	char	*str;
 
-	path = ft_strfreejoin(&path, "/.21sh_history");
-	str = NULL;
+	path = ft_strfjoin(path, "/.21sh_history", 0);
 	fd = open(path, O_WRONLY);
 	if (fd < 0)
 		fd = open(path, O_CREAT | O_WRONLY);
 	if (fd > 0)
 	{
-		while (sh->history && sh->history->bfr)
-			sh->history = sh->history->bfr;
-		while (sh->history)
+		str = ft_strnew(0);
+		while (rl->history && rl->history->bfr)
+			rl->history = rl->history->bfr;
+		while (rl->history)
 		{
-			str = ft_strfreejoin(&str, sh->history->buffer);
-			str = ft_strfreejoin(&str, "\n");
-			sh->history = sh->history->next;
+			str = ft_strfjoin(str, rl->history->buf, 0);
+			str = ft_strfjoin(str, "\n", 0);
+			rl->history = rl->history->next;
 		}
 		if (str)
 			write(fd, str, ft_strlen(str));

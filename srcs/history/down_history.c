@@ -6,49 +6,48 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:37:42 by schakor           #+#    #+#             */
-/*   Updated: 2018/11/28 11:38:35 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:23:53 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void	down_history_here(t_shell *sh)
+static void		rl_down_history_here(t_rl *rl)
 {
 	int			i;
 	t_history	*head;
 
-	head = sh->history;
+	head = rl->history;
 	i = 0;
-	while (i < sh->history_save && sh->history->bfr)
+	while (i < rl->history_save && rl->history->bfr)
 	{
-		sh->history = sh->history->bfr;
+		rl->history = rl->history->bfr;
 		i++;
 	}
-	print_history(sh);
-	sh->history = head;
+	rl_print_history(rl);
+	rl->history = head;
 }
 
-void	down_history(t_shell *sh)
+void			rl_get_next_history(t_rl *rl)
 {
-	if (!sh->history)
+	if (!rl->history)
 		return ;
-	switch_history(sh);
-	if (sh->history_save == 0)
+	rl_switch_history(rl);
+	if (rl->history_save == 0)
 	{
-		move_start(sh);
+		rl_move_start(rl);
 		ft_putstr(tgetstr("cd", NULL));
-		display_prompt(sh);
-		ft_memset(sh->in->buffer, '\0', sh->in->buftmp);
-		sh->history_save = -1;
-		sh->in->bufsize = 0;
-		sh->in->buf_i = 0;
+		rl_display_prompt(rl->prompt);
+		ft_memset(rl->buf, '\0', rl->bufvar.len_tot);
+		rl->history_save = -1;
+		ft_memset(&(rl->bufvar), 0, sizeof(rl->bufvar));
 		return ;
 	}
-	if (sh->history_save == -1 || sh->history_save == -2)
+	if (rl->history_save == -1 || rl->history_save == -2)
 		return ;
 	else
 	{
-		sh->history_save--;
-		down_history_here(sh);
+		rl->history_save--;
+		rl_down_history_here(rl);
 	}
 }

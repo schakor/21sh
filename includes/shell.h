@@ -6,13 +6,12 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:26:32 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/04 14:24:29 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:23:54 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
 # define SHELL_H
-
 
 struct						s_shell
 {

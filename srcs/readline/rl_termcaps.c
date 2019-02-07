@@ -16,7 +16,7 @@ void			rl_move_start(t_rl *rl)
 {
 	size_t		index;
 
-	index = rl->nb_char + rl->len_prompt;
+	index = rl->bufvar.len_char + rl->len_prompt;
 	while (index > 0)
 	{
 		ft_putstr(tgetstr("le", NULL));

@@ -33,19 +33,19 @@ void				rl_delete_underneath(t_rl *rl)
 	size_t			i;
 	int				nb_bytes;
 
-	if (rl->buf[rl->i_buf] == '\0')
+	if (rl->buf[rl->bufvar.i_buf] == '\0')
 		return ;
-	nb_bytes = get_cur_bytes(rl, rl->i_buf);
-	ft_memcpy(rl->buf + rl->i_buf, rl->buf +\
-			rl->i_buf + nb_bytes, rl->len_buf - rl->i_buf);
+	nb_bytes = get_cur_bytes(rl, rl->bufvar.i_buf);
+	ft_memcpy(rl->buf + rl->bufvar.i_buf, rl->buf +\
+			rl->bufvar.i_buf + nb_bytes, rl->bufvar.len_buf - rl->bufvar.i_buf);
 	rl_move_start(rl);
 	ft_putstr(tgetstr("cd", NULL));
 	rl_display_prompt(rl->prompt);
-	rl->len_buf -= nb_bytes;
-	write(1, rl->buf, rl->len_buf);
-	rl->nb_char--;
-	i = rl->nb_char;
-	while (i > rl->i_char)
+	rl->bufvar.len_buf -= nb_bytes;
+	write(1, rl->buf, rl->bufvar.len_buf);
+	rl->bufvar.len_char--;
+	i = rl->bufvar.len_char;
+	while (i > rl->bufvar.i_char)
 	{
 		ft_putstr(tgetstr("le", NULL));
 		i--;
@@ -64,7 +64,7 @@ void				rl_delete_ctrl_w(t_rl *rl)
 
 void				rl_ctrl_d(t_rl *rl)
 {
-	if (rl->i_char == 0 && rl->i_buf == 0 && rl->buf[rl->i_buf] == '\0')
+	if (rl->bufvar.i_char == 0 && rl->bufvar.i_buf == 0 && rl->buf[rl->bufvar.i_buf] == '\0')
 		fatal_exit(singleton_shell(), 6);
 	else
 		rl_delete_underneath(rl);

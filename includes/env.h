@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:07:26 by schakor           #+#    #+#             */
-/*   Updated: 2018/12/17 14:18:03 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/06 14:23:54 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ struct					s_envl
 	char				*value;
 	struct s_envl		*next;
 };
-
 
 t_envl					*addlast_envl(t_envl *head, t_envl *new);
 t_envl					*envarr_2_envl(char **env);
