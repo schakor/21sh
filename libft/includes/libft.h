@@ -6,14 +6,16 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:00:32 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/06 10:17:58 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/16 13:55:35 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <string.h>
 # include "get_next_line.h"
+# include <stdint.h>
 
 /*
 **		MEMORY FUNCTIONS
@@ -64,12 +66,42 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_strfjoin(char *s1, char *s2, int opt);
 
 /*
+**		UTF-8 STRING FUNCTIONS
+*/
+
+size_t				ft_u8_strlen(const uint8_t *s);
+uint8_t				*ft_u8_strdup(const uint8_t *s);
+uint8_t				*ft_u8_strcpy(uint8_t *dst, const uint8_t *src);
+uint8_t				*ft_u8_strncpy(uint8_t *dst, const uint8_t *src, size_t n);
+uint8_t				*ft_u8_strcat(uint8_t *dst, const uint8_t *src);
+uint8_t				*ft_u8_strncat(uint8_t *dst, const uint8_t *src, size_t n);
+int					ft_u8_strcmp(const uint8_t *s1, const uint8_t *s2);
+int					ft_u8_strncmp(const uint8_t *s1, const uint8_t *s2, \
+		size_t n);
+uint8_t				*ft_u8_strnew(size_t n);
+void				ft_u8_strdel(uint8_t **as);
+int					ft_u8_strequ(uint8_t const *s1, uint8_t const *s2);
+uint8_t				*ft_u8_strjoin(uint8_t const *s1, uint8_t const *s2);
+uint8_t				*ft_u8_strfjoin(uint8_t *s1, uint8_t *s2, \
+		int opt);
+uint8_t				**ft_u8_strsplit(uint8_t const *s, uint8_t c);
+
+/*
 **		CHAR ** FUNCTIONS
 */
 
 size_t				ft_arrlen(char **arr);
 char				**ft_arrdup(char **arr);
 void				ft_arrdel(char **arr);
+
+/*
+**		ARRAY OF UTF-8 STRING FUNCTIONS
+*/
+
+size_t				ft_u8_arrlen(uint8_t **arr);
+uint8_t				**ft_u8_arrdup(uint8_t **arr);
+void				ft_u8_arrdel(uint8_t **arr);
+
 /*
 **		CONVERSION FUNCTIONS
 */
@@ -95,12 +127,14 @@ int					ft_isquote(int c);
 int					ft_isescaped(char *s, int index);
 int					ft_isnotprint(int c);
 int					ft_first_char_unicode(int c);
+
 /*
 **		OUTPUT FUNCTIONS
 */
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
+void				ft_putu8str(uint8_t const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
 void				ft_putnbrendl(int n);

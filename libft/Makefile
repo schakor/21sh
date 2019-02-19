@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/14 17:56:43 by schakor           #+#    #+#              #
-#    Updated: 2018/12/17 18:12:49 by schakor          ###   ########.fr        #
+#    Updated: 2019/02/16 10:41:41 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ OBJ_PATH	=	./objs
 SRC_FILES	=	array/ft_arrdup.c\
 				array/ft_arrlen.c\
 				array/ft_arrdel.c\
+				array-utf8-string/ft_u8_arrlen.c\
+				array-utf8-string/ft_u8_arrdup.c\
+				array-utf8-string/ft_u8_arrdel.c\
 				conversion/ft_atoi.c\
 				conversion/ft_itoa.c\
 				conversion/ft_tolower.c\
@@ -55,6 +58,7 @@ SRC_FILES	=	array/ft_arrdup.c\
 				output/ft_putnbr.c\
 				output/ft_putnbrendl.c\
 				output/ft_putstr.c\
+				output/ft_putu8str.c\
 				output/ft_putchar_fd.c\
 				output/ft_putendl_fd.c\
 				output/ft_putnbr_fd.c\
@@ -100,7 +104,21 @@ SRC_FILES	=	array/ft_arrdup.c\
 				type/ft_isquote.c\
 				type/ft_strtolower.c\
 				type/ft_first_char_unicode.c\
-				type/ft_isnotprint.c
+				type/ft_isnotprint.c\
+				utf8-string/ft_u8_strlen.c\
+				utf8-string/ft_u8_strdup.c\
+				utf8-string/ft_u8_strcpy.c\
+				utf8-string/ft_u8_strncpy.c\
+				utf8-string/ft_u8_strcat.c\
+				utf8-string/ft_u8_strncat.c\
+				utf8-string/ft_u8_strcmp.c\
+				utf8-string/ft_u8_strncmp.c\
+				utf8-string/ft_u8_strnew.c\
+				utf8-string/ft_u8_strdel.c\
+				utf8-string/ft_u8_strequ.c\
+				utf8-string/ft_u8_strjoin.c\
+				utf8-string/ft_u8_strfjoin.c\
+				utf8-string/ft_u8_strsplit.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

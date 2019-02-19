@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2019/02/06 14:58:09 by schakor          ###   ########.fr        #
+#    Updated: 2019/02/19 13:49:29 by schakor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	21sh
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3  -fsanitize=address
 
 CPPFLAGS	=	-I includes
 
@@ -40,7 +40,7 @@ SRC_FILES	=	main.c\
 				terminal/terminal.c\
 				terminal/shell.c\
 				env/addlast_envl.c\
-				env/envarr_2_envl.c\
+				env/init_shell_envl.c\
 				env/get_env_val.c\
 				env/push_env.c\
 				signal/ft_signal.c\
@@ -51,7 +51,10 @@ SRC_FILES	=	main.c\
 				history/file_history.c\
 				history/history_cmd.c\
 				history/list_history.c\
-				history/up_history.c
+				history/up_history.c\
+				history/history.c\
+				history/init_shell_history.c\
+				lexer/lexer.c\
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 
@@ -63,7 +66,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	make -C libft
-	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
+	$(CC) $^ $(CFLAGS) $(LDLIBS) -o $@
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<

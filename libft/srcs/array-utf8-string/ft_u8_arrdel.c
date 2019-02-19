@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strfjoin.c                                      :+:      :+:    :+:   */
+/*   ft_u8_arrdel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: schakor <schakor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:18:00 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/16 13:30:42 by schakor          ###   ########.fr       */
+/*   Created: 2019/02/16 13:47:58 by schakor           #+#    #+#             */
+/*   Updated: 2019/02/16 13:55:35 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strfjoin(char *s1, char *s2, int opt)
+void		ft_u8_arrdel(uint8_t **arr)
 {
-	char	*ret;
+	size_t	i;
 
-	ret = ft_strjoin(s1, s2);
-	if (opt == 0)
-		ft_strdel(&s1);
-	else if (opt == 1)
-		ft_strdel(&s2);
-	else if (opt == 2)
+	i = 0;
+	if (arr)
 	{
-		ft_strdel(&s1);
-		ft_strdel(&s2);
+		while (arr[i] != NULL)
+		{
+			ft_u8_strdel(&(arr[i]));
+			i++;
+		}
+		free(arr);
+		arr = NULL;
 	}
-	return (ret);
 }

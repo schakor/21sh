@@ -6,12 +6,13 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 13:06:41 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/06 14:25:09 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/14 15:45:10 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TWENTY_ONE_SH_H
 # define TWENTY_ONE_SH_H
+
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,14 +28,15 @@
 # include <term.h>
 # include <sys/ioctl.h>
 # include <stdint.h>
+# include <pwd.h>
 
 # include "sh_typedefs.h"
 # include "sh_defines.h"
 # include "shell.h"
 # include "env.h"
 # include "readline.h"
-
-t_termios					g_cooked_tio;
+# include "history.h"
+# include "lexer.h"
 
 void						ft_sig_handler(int signo);
 void						ft_signal(int signo);

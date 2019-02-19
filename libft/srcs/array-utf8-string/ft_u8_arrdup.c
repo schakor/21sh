@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strfjoin.c                                      :+:      :+:    :+:   */
+/*   ft_u8_arrdup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: schakor <schakor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:18:00 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/16 13:30:42 by schakor          ###   ########.fr       */
+/*   Created: 2019/02/16 13:44:04 by schakor           #+#    #+#             */
+/*   Updated: 2019/02/16 13:55:35 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strfjoin(char *s1, char *s2, int opt)
+uint8_t			**ft_u8_arrdup(uint8_t **arr)
 {
-	char	*ret;
+	uint8_t		**ret;
+	size_t		i;
 
-	ret = ft_strjoin(s1, s2);
-	if (opt == 0)
-		ft_strdel(&s1);
-	else if (opt == 1)
-		ft_strdel(&s2);
-	else if (opt == 2)
+	i = 0;
+	ret = NULL;
+	if (!arr || !(ret = (uint8_t **)malloc(sizeof(*ret) * (ft_u8_arrlen(arr) +
+			1))))
+		return (ret);
+	while (arr[i] != NULL)
 	{
-		ft_strdel(&s1);
-		ft_strdel(&s2);
+		ret[i] = ft_u8_strdup(arr[i]);
+		i++;
 	}
+	ret[i] = NULL;
 	return (ret);
 }
