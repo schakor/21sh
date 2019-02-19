@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:24:42 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/19 13:50:17 by schakor          ###   ########.fr       */
+/*   Updated: 2019/02/19 15:32:21 by schakor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ void					run_shell(void)
 		//lexer();
 		//parser();
 		write(1, "\n", 1);
-		ft_putu8str(g_shell.line);
+		if (g_shell.line)
+		{
+			ft_putu8str(g_shell.line);
+			write(1, "\n", 1);
+		}
 		if (ft_u8_strequ(g_shell.line, (const uint8_t *)"history"))
 			;
 		else if (ft_u8_strequ(g_shell.line, (const uint8_t *)"exit"))
 			exit(EXIT_SUCCESS);
-		write(1, "\n", 1);
 	}
 }
