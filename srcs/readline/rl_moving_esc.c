@@ -63,6 +63,6 @@ void		rl_forward_word(t_rl *rl)
 void		rl_end_of_read(t_rl *rl)
 {
 	rl_add_history(rl);
-	rl_file_from_history(rl, ft_strdup("/Users/schakor"));
+	rl_file_from_history(rl, ft_strjoin(get_env_val(g_shell.envl, "HOME"), "/.21sh_history"));
 	rl->reading = FALSE;
 }
