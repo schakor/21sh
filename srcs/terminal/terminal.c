@@ -18,8 +18,11 @@
 
 void			raw_terminal(void)
 {
-	if (tcsetattr(STDIN_FILENO, TCSADRAIN, &(g_shell.raw_tio)))
-		fatal_exit(SH_EINVAL);
+	if (g_shell.term_set == TERM_SET)
+	{
+		if (tcsetattr(STDIN_FILENO, TCSADRAIN, &(g_shell.raw_tio)))
+			fatal_exit(SH_EINVAL);
+	}
 }
 
 /*
@@ -28,6 +31,9 @@ void			raw_terminal(void)
 
 void			cooked_terminal(void)
 {
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &(g_shell.cooked_tio)))
-		fatal_exit(SH_ENOMEM);
+	if (g_shell.term_set == TERM_SET)
+	{
+		if (tcsetattr(STDIN_FILENO, TCSANOW, &(g_shell.cooked_tio)))
+			fatal_exit(SH_ENOMEM);
+	}
 }

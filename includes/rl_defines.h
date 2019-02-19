@@ -45,5 +45,6 @@
 # define MODE_VI_INSERT			1
 # define MODE_VI_COMMAND		2
 # define KEYMAP_SIZE			22
+# define TERM_SET				1
 
 #endif

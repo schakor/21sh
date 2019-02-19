@@ -24,6 +24,7 @@ void					init_shell(int ac, char **av, char **env)
 	g_shell.history_save = -1;
 	g_shell.history_size = 0;
 	g_shell.history = init_shell_history();
+	g_shell.term_set = 0;
 	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO) ||\
 			!isatty(STDERR_FILENO))
 		fatal_exit(SH_ENOTTY);
@@ -31,6 +32,7 @@ void					init_shell(int ac, char **av, char **env)
 		return ;
 	if (!tgetent(NULL, term))
 		return ;
+	g_shell.term_set = 1;
 	if (tcgetattr(STDIN_FILENO, &(g_shell.cooked_tio)) ||\
 			tcgetattr(STDIN_FILENO, &(g_shell.raw_tio)))
 		fatal_exit(SH_EINVAL);
