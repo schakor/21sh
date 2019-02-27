@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2019/02/19 13:49:29 by schakor          ###   ########.fr        #
+#    Updated: 2019/02/27 15:33:44 by khsadira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,12 +49,18 @@ SRC_FILES	=	main.c\
 				history/controler_history.c\
 				history/down_history.c\
 				history/file_history.c\
-				history/history_cmd.c\
 				history/list_history.c\
 				history/up_history.c\
 				history/history.c\
 				history/init_shell_history.c\
 				lexer/lexer.c\
+				builtin/built_history.c\
+				builtin/built_exclaim.c\
+				builtin/built_cd.c\
+				builtin/built_echo.c\
+				builtin/built_env.c\
+				builtin/built_setenv.c\
+				builtin/built_unsetenv.c
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 

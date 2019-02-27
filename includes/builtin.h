@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakor <schakor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 17:19:49 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/27 14:49:57 by khsadira         ###   ########.fr       */
+/*   Created: 2019/02/27 15:05:15 by khsadira          #+#    #+#             */
+/*   Updated: 2019/02/27 16:02:11 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
-struct					s_token
-{
+/*
+**	builtin functions header
+*/
 
-};
-
-void					lexer(void);
+void	built_history(t_rl *rl);
+void	built_exclaim();
+void	built_cd();
+void	built_echo();
+void	built_env();
+void	built_setenv();
+void	built_unsetenv();
 
 #endif

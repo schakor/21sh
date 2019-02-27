@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_cmd.c                                      :+:      :+:    :+:   */
+/*   built_history.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/04 10:17:34 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/16 13:40:59 by schakor          ###   ########.fr       */
+/*   Created: 2019/02/27 15:28:52 by khsadira          #+#    #+#             */
+/*   Updated: 2019/02/27 15:31:53 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		ft_nblen(int nb)
 	return (i);
 }
 
-void			rl_history_cmd(t_rl *rl)
+void			built_history(t_rl *rl)
 {
 	t_history	*tmp;
 	int			i;
