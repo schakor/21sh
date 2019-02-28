@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:28:52 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/27 15:31:53 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/28 12:22:19 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ static int		ft_nblen(int nb)
 	return (i);
 }
 
-void			built_history(t_rl *rl)
+void			built_history(t_rl rl)
 {
 	t_history	*tmp;
 	int			i;
 	int			len;
 
 	i = 1;
-	tmp = rl->history;
+	tmp = rl.history;
 	while (tmp->bfr)
 		tmp = tmp->bfr;
 	while (tmp)
 	{
-		rl_move_start(rl);
+		rl_move_start(&rl);
 		len = 5 - ft_nblen(i);
 		while (len--)
 			ft_putchar(' ');

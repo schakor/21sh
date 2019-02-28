@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:04:47 by schakor           #+#    #+#             */
-/*   Updated: 2019/02/27 14:53:58 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/28 12:21:25 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,6 @@ void						readline()
 	rl_display_prompt(rl.prompt);
 	rl_main_work(&rl);
 	g_shell.line = rl.buf;
-	if (ft_strequ((char *)(rl.buf), "history"))
-		built_history(&rl);
 	g_shell.history = rl.history;
 	g_shell.history_size = rl.history_size;
 	g_shell.history_save = rl.history_save;
