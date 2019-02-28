@@ -6,38 +6,33 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:28:32 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/27 15:31:27 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/02/28 12:20:46 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
-/*
-int	ft_built_echo(t_lst *list, t_env *env)
-{
-	int		i;
-	int		n;
-	t_env	*h_env;
 
+void	built_echo(t_rl rl)
+{
+/*
+	int		n;
+	int		i;
+
+	i = 0;
 	h_env = env;
 	n = 0;
-	if (list->arg[1] && ft_strequ(list->arg[1], "-n"))
+	if (rl.arg[0] && ft_strequ(rl.arg[0], "-n"))
 	{
 		n = 1;
-		i = 2;
+		i++;
 	}
-	else
-		i = 1;
-	while (list->arg[i])
+	while (rl.arg[i])
 	{
-		if ((n && i > 2) || (!n && i != 1))
+		if (rl.arg[i + 1])
 			ft_putchar(' ');
-		ft_putstr(list->arg[i++]);
+		ft_putstr(rl.arg[i++]);
 	}
 	if (!n)
 		ft_putchar(10);
-	return (1);
-}*/
-
-void	built_echo()
-{
+*/
 }
