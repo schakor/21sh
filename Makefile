@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2019/02/27 15:33:44 by khsadira         ###   ########.fr        #
+#    Updated: 2019/02/28 12:08:27 by khsadira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	21sh
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror -g3  -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 CPPFLAGS	=	-I includes
 
