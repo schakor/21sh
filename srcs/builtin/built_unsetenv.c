@@ -6,18 +6,18 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:30:33 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/27 16:31:12 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:01:13 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
-/*
-static t_env	*ft_unset(char *str, t_env *l_env)
-{
-	t_env	*h_env;
-	t_env	*tmp;
 
-	if (ft_strequ(l_env->name, str))
+static t_envl	*ft_unset(char *word, int size, t_envl *l_env)
+{
+	t_envl	*h_env;
+	t_envl	*tmp;
+
+	if (!ft_memcmp(l_env->name, word, size))
 	{
 		tmp = l_env->next;
 		l_env->next = NULL;
@@ -27,11 +27,11 @@ static t_env	*ft_unset(char *str, t_env *l_env)
 	h_env = l_env;
 	while (l_env)
 	{
-		if (ft_strequ(l_env->name, str))
+		if (!ft_memcmp(l_env->name, word, size))
 		{
 			tmp->next = l_env->next;
 			l_env->next = NULL;
-			ft_freeenv(l_env);
+		//	ft_freeenv(l_env);
 			return (h_env);
 		}
 		tmp = l_env;
@@ -40,23 +40,25 @@ static t_env	*ft_unset(char *str, t_env *l_env)
 	return (h_env);
 }
 
-t_env			*ft_unsetenv(t_lst *list, t_env *l_env)
+t_envl			*ft_unsetenv(uint8_t **arg, int *arg_size, t_envl *l_env)
 {
 	int	i;
 	int	len;
 
+	len = 0;
+	i = 1;
 	if (!l_env)
 		return (NULL);
-	len = ft_dstrlen(list->arg);
-	i = 1;
+	while (arg[len])
+		len++;
 	if (len < 2)
 		ft_putendl_fd("unsetenv: Too few arguments.", 2);
 	else
-		while (list->arg[i])
-			l_env = ft_unset(list->arg[i++], l_env);
+		while (arg[i])
+		{
+			l_env = ft_unset(arg[i], arg_size[i], l_env);
+			i++;
+		}
 	return (l_env);
-}*/
-
-void	built_unsetenv()
-{
 }
+

@@ -6,104 +6,98 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:27:12 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/27 16:12:59 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:38:10 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
-/*
-t_env			*ft_dupenv(t_env *env)
+
+static char	**from_arg_to_cmd(uint8_t **arg, int *arg_size, int curr_arg)
 {
-	t_env	*new;
-	t_env	*head;
-	t_env	*tmp;
-
-	tmp = NULL;
-	head = NULL;
-	tmp = env;
-	new = NULL;
-	while (tmp)
-	{
-		if (!(new = (t_env *)malloc(sizeof(*new))))
-			return (NULL);
-		new->name = ft_strdup(tmp->name);
-		new->arg = ft_strdup(tmp->arg);
-		new->next = NULL;
-		head = ft_addenv(head, new);
-		tmp = tmp->next;
-	}
-	return (head);
-}
-
-static char		**ft_tab_to_tabi(char **tab, int i)
-{
-	char	*ret;
-	char	**ret_t;
-
-	if (!(ret_t = (char **)malloc(sizeof(char *) * 2)))
-		return (NULL);
-	ret = ft_strdup(tab[i]);
-	i++;
-	while (tab[i])
-	{
-		ret = ft_strfjoin(&ret, " ");
-		ret = ft_strfjoin(&ret, tab[i]);
-		i++;
-	}
-	ret_t[0] = ret;
-	ret_t[1] = 0;
-	return (ret_t);
-}
-
-static void		ft_b_exec(char **cmd, int i, t_env *l_env)
-{
-	char	**tab;
-
-	if (!cmd[i])
-	{
-		ft_printenv(l_env);
-		ft_freeenv(l_env);
-		return ;
-	}
-	tab = ft_tab_to_tabi(cmd, i);
-	ft_start_prog(tab, NULL, l_env, 0);
-	ft_freedstr(tab);
-	ft_freeenv(l_env);
-}
-
-void			ft_built_env(t_lst *list, t_env *l_env, int i, int a)
-{
-	int	c;
+	int		nb_arg;
+	char	**ret;
+	int		i;
 	char	*tmp;
 
-	while (list->arg[i] && i != a)
+	i = 0;
+	nb_arg = curr_arg;
+	while (arg[nb_arg])
+		nb_arg++;
+	if (!(ret = (char **)malloc(sizeof(char *) * 	nb_arg)))
+		return (NULL);
+	while (ret[i] && arg[curr_arg])
 	{
-		if (ft_strequ(list->arg[i], "env"))
-			return (ft_built_env(list, l_env, i + 1, a));
-		else if (ft_strequ(list->arg[i], "-i"))
-		{
-			ft_freeenv(l_env);
-			return (ft_built_env(list, NULL, i + 1, a));
-		}
-		else if ((c = ft_strichr(list->arg[i], '=')) != -1)
-		{
-			tmp = ft_strsub(list->arg[i], 0, c);
-			l_env = ft_setenv_c(tmp,
-				ft_strsub(list->arg[i], c + 1, ft_strlen(list->arg[i]) - c),
-				l_env);
-			ft_strdel(&tmp);
-			return (ft_built_env(list, l_env, i + 1, a));
-		}
+		tmp = ft_memalloc(arg_size[curr_arg]);
+		tmp = ft_memcpy(tmp, arg[curr_arg], arg_size[curr_arg]);
+		ret[i] = tmp;
+		i++;
+		curr_arg++;
+	}
+	return (ret);
+}
+
+static void		exec_env(uint8_t **arg, int *arg_size, int curr_arg, t_envl *head)
+{
+	char	**ret;
+	(void)head;
+	if (!arg[curr_arg])
+	{
+		//print_env(head);
+		//free_env(head);
+	}
+	else
+	{
+		ret = from_arg_to_cmd(arg, arg_size, curr_arg);
+		//execution;
+		//free_tab;
+		//free_env;
+	}
+}
+
+static int		my_memchr_w(uint8_t *arg, int c, int arg_size)
+{
+	int		i;
+	
+	i = 0;
+	while (i < arg_size)
+	{
+		if (arg[i] == c)
+			return (i);
 		i++;
 	}
-	ft_b_exec(list->arg, i, l_env);
+	if (arg[i] == c)
+		return (i);
+	return (-1);
 }
 
-//t_envl		*built_env(t_envl *header, t_rl readline)
+void	built_env(t_envl *head, uint8_t **arg, int *arg_size, int last_cmd, int curr_arg)
 {
+	int		c;
+	uint8_t	*tmp;
+	uint8_t *tmp2;
 
-}*/
-
-void	built_env()
-{
+	while (arg[curr_arg] && curr_arg != last_cmd)
+	{
+		if (ft_memcmp(arg[curr_arg], "env\0", 4))
+			return (built_env(head, arg, arg_size, last_cmd, curr_arg + 1));
+		else if (ft_memcmp(arg[curr_arg], "-i\0", 3))
+		{
+			//free env;
+			return (built_env(head, arg, arg_size, last_cmd, curr_arg + 1));
+		}
+		else if ((c = my_memchr_w(arg[curr_arg], '=', arg_size[curr_arg])) != -1)
+		{
+			tmp = ft_memalloc(c);
+			tmp = ft_memcpy(tmp, arg[curr_arg], c);
+			tmp2 = ft_memalloc(arg_size[curr_arg] - c);
+			tmp2 = ft_memcpy(tmp2, arg[curr_arg] + c, arg_size[curr_arg] - c);
+			push_env(&head, (char *)tmp, (char *)tmp2);
+			//free tmp & tmp2 ??
+			return (built_env(head, arg, arg_size, last_cmd, curr_arg + 1));
+		}
+		curr_arg++;
+	}
+	exec_env(arg, arg_size, curr_arg, head);
 }
+//built_env_check_error +  return last cmd;
+//send dulicate env to built_env 

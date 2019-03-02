@@ -6,7 +6,7 @@
 #    By: schakor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/09 12:48:20 by schakor           #+#    #+#              #
-#    Updated: 2019/02/28 12:08:27 by khsadira         ###   ########.fr        #
+#    Updated: 2019/03/02 18:34:10 by khsadira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC_FILES	=	main.c\
 				builtin/built_cd.c\
 				builtin/built_echo.c\
 				builtin/built_env.c\
+				builtin/built_env_extra.c\
 				builtin/built_setenv.c\
 				builtin/built_unsetenv.c
 
