@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:30:33 by khsadira          #+#    #+#             */
-/*   Updated: 2019/03/02 19:01:13 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/02 20:17:18 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_envl	*ft_unset(char *word, int size, t_envl *l_env)
 	{
 		tmp = l_env->next;
 		l_env->next = NULL;
-		ft_freeenv(l_env);
+	//	ft_freeenv(l_env);
 		return (tmp);
 	}
 	h_env = l_env;
@@ -56,7 +56,7 @@ t_envl			*ft_unsetenv(uint8_t **arg, int *arg_size, t_envl *l_env)
 	else
 		while (arg[i])
 		{
-			l_env = ft_unset(arg[i], arg_size[i], l_env);
+			l_env = ft_unset((char *)arg[i], arg_size[i], l_env);
 			i++;
 		}
 	return (l_env);
