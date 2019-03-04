@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:30:03 by khsadira          #+#    #+#             */
-/*   Updated: 2019/03/02 20:16:47 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:26:13 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_envl	*built_sentenv(uint8_t **arg, int *arg_size, t_envl *head)
 		//printenv
 		return (head);
 	}
-	else if (built_env_check_error(arg, arg_size))
+	else if (built_setenv_check_error(arg, arg_size))
 		return (head);
 	else if (len == 2)
 		return (setenv_nullarg(arg[1], arg_size[1], tmp));

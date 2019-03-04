@@ -6,34 +6,31 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:28:32 by khsadira          #+#    #+#             */
-/*   Updated: 2019/02/28 12:22:40 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/04 12:07:32 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twenty_one_sh.h"
 
-void	built_echo(t_rl rl)
+int	built_echo(uint8_t **arg, int *arg_size)
 {
-	(void)rl;
-/*
 	int		n;
 	int		i;
 
 	i = 0;
-	h_env = env;
 	n = 0;
-	if (rl.arg[0] && ft_strequ(rl.arg[0], "-n"))
+	if (arg[0] && !ft_memcmp(arg[0], "-n\0", 3))
 	{
 		n = 1;
 		i++;
 	}
-	while (rl.arg[i])
+	while (arg[i])
 	{
-		if (rl.arg[i + 1])
-			ft_putchar(' ');
-		ft_putstr(rl.arg[i++]);
+		if (arg[i + 1])
+			write(1, " ", 1);
+		write(1, arg[i], arg_size[i]);
 	}
 	if (!n)
-		ft_putchar(10);
-*/
+		write(1, "\n", 1);
+	return (0);
 }

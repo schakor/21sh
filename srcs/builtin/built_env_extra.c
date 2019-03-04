@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 18:25:42 by khsadira          #+#    #+#             */
-/*   Updated: 2019/03/02 18:40:12 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:25:09 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		put_setenv_error(int err)
 	return (1);
 }
 
-int				built_env_check_error(uint8_t **arg, int *arg_size)
+int				built_setenv_check_error(uint8_t **arg, int *arg_size)
 {
 	int	i;
 
@@ -76,4 +76,22 @@ int				built_env_find_last_cmd(uint8_t **arg, int *arg_size)
 			return (i);
 	}
 	return (i);
+}
+
+
+int			built_env_check_error(uint8_t **arg, int *arg_size, t_envl *head)
+{
+	int	i;
+
+	i = 0;
+	if (!head)
+		return (ENV_ERROR);
+	arg_size++;
+	arg++;
+/*	while (arg[i])
+	{
+		if (arg[i] == 
+		i++;
+	}*/
+	return (ENV_OK);
 }

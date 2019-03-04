@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:27:12 by khsadira          #+#    #+#             */
-/*   Updated: 2019/03/02 18:38:10 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/04 17:15:25 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int		my_memchr_w(uint8_t *arg, int c, int arg_size)
 	return (-1);
 }
 
-void	built_env(t_envl *head, uint8_t **arg, int *arg_size, int last_cmd, int curr_arg)
+int		built_env(t_envl *head, uint8_t **arg, int *arg_size, int last_cmd, int curr_arg)
 {
 	int		c;
 	uint8_t	*tmp;
@@ -80,7 +80,7 @@ void	built_env(t_envl *head, uint8_t **arg, int *arg_size, int last_cmd, int cur
 	{
 		if (ft_memcmp(arg[curr_arg], "env\0", 4))
 			return (built_env(head, arg, arg_size, last_cmd, curr_arg + 1));
-		else if (ft_memcmp(arg[curr_arg], "-i\0", 3))
+		else if (ft_memcmp(arg[curr_arg], "-i", 2))
 		{
 			//free env;
 			return (built_env(head, arg, arg_size, last_cmd, curr_arg + 1));
@@ -98,6 +98,7 @@ void	built_env(t_envl *head, uint8_t **arg, int *arg_size, int last_cmd, int cur
 		curr_arg++;
 	}
 	exec_env(arg, arg_size, curr_arg, head);
+	return (ENV_OK);
 }
 //built_env_check_error +  return last cmd;
 //send dulicate env to built_env 
