@@ -6,7 +6,7 @@
 /*   By: schakor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:07:26 by schakor           #+#    #+#             */
-/*   Updated: 2019/03/02 19:28:14 by khsadira         ###   ########.fr       */
+/*   Updated: 2019/03/05 16:36:43 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ struct					s_envl
 {
 	char				*name;
 	char				*value;
+	size_t				exp;
 	struct s_envl		*next;
 };
 
